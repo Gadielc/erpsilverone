@@ -350,13 +350,19 @@ Public Class frm_city
                     Command = New SqlCommand("SP_SILV_CITIES_DELETE", connection) With {.CommandType = CommandType.StoredProcedure}
                     'INDICAMOS QUE ESTE COMANDO TENDRA PARAMETROS ADICIONALES PARA PODER EJECUTARSE Y DE SER POSIBLE RETORNAR UN VALOR
                     With Command
-                        .Parameters.Add("@ID_CITY", SqlDbType.Int).Value = TXT_ID.Text
+                        .Parameters.Add("@ID_CITY", SqlDbType.Int).Value = TXT_ID.Text 'SE ENVIA EL PARAMETRO IDENTIFICADOR DEL REGISTRO ID_CITY DESDE EL TEXTO QUE CONTIENE LA CAJA DE TEXTO TXT_ID EN SU PROPIEDAD TEXT
 
-
+                        'DECLARAMOS UNA VARIABLE DE TIPO SQLPARAMETER CON EL NOMBRE DEL @MENSAJE DE TIPO NVARCHAR Y LONGITUD 200, MISMO QUE SE DECLARO EN EL CUERPO DEL PROCEDIMIENTO ALMACENADO SP_SILV_CITIES_DELETE
                         Dim Message As New SqlParameter("@MENSAJE", SqlDbType.NVarChar, 200)
+                        'INDICAMOS QUE SE TRATA DE UN PARAMETRO DE TIPO OUTPUT
                         Message.Direction = ParameterDirection.Output
+                        'A NUESTRO COMANDO A EJCUTAR LE AÑADIMOS EL PARAMETRO NECESARIO PARA SU EJECUCION
                         Command.Parameters.Add(Message)
+                        'LE ASIGNAMOS A LA VARIABLE    Public Rows As Integer LA EJECUCION DEL COMANDO ACTUAL  Command = New SqlCommand("SP_SILV_CITIES_DELETE", connection)
                         Rows = Command.ExecuteNonQuery
+
+
+                        'SI LA EJECUCION DEL COMANDO RETORNA UN VALOR DE LOS POSIBLES DE NUESTRO PROCEDIMIENTO SP_SILV_CITIES_DELETE SE MUESTRA UN VALOR EN UN MENSAJE DE TIPO  XtraMessageBox DE LA LIBRERIA DEXEXPRESS
                         If (Rows > 0) Then
                             XtraMessageBox.Show(CType(Message.Value, String), "SISTEMA", MessageBoxButtons.OK)
                         Else
@@ -364,11 +370,14 @@ Public Class frm_city
                         End If
                     End With
                 Catch ex As Exception
+                    'SE MUESTRA UN MENSAJE DE ERROR INDICANDO QUE ALGO DENTRO DEL CODIGO TRY ESTA MAL
                     XtraMessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 Finally
-
+                    'CERRAMOS LA CONEION A LA BASE DE DATOS
                     Disconnect_Database()
+                    'LIMPIAMOS LOS CAMPOS
                     CLEAN_FIELDS()
+                    'REFRESCAMOS LA VISTA DE LOS REGISTROS LLAMANDO EL METODO ENCARGADO DE EJECUTAR ESTE PROCEDIMIENTO ALMACENADO
                     FILL_DATA()
                 End Try
             End If
@@ -440,7 +449,6 @@ Public Class frm_city
         DGV_DATA.ShowRibbonPrintPreview() 'MANDAMOS A LLAMAR EL CONTROL DE VISTA PREVIA DEL CONTROL GRIDCONTROL
     End Sub
 
-
     Private Sub HIDE_PANEL_ItemClick(sender As Object, e As ItemClickEventArgs) Handles HIDE_PANEL.ItemClick
         'ESTE CODIGO NOS OCULTA EL PANEL DE BUSQUEDA DE NUESTRO CONTROL GRIDCONTROL
         Me.G_DATA.OptionsFind.AlwaysVisible = False
@@ -469,7 +477,7 @@ Public Class frm_city
     End Sub
 
     Private Sub frm_city_Load(sender As Object, e As EventArgs) Handles Me.Load
-        FILL_DATA()
+        FILL_DATA() 'SE CARGA LA VISTA DE LOS REGISTROS ACTUALES EJECUTANDO EL METODO QUE LLAMA AL PROCEDIMIENTO ALMACENADO
     End Sub
 
     Private Sub SHOW_PANEL_ItemClick_2(sender As Object, e As ItemClickEventArgs) Handles SHOW_PANEL.ItemClick
