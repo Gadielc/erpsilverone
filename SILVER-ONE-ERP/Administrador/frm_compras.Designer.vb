@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frm_compras
     Inherits DevExpress.XtraBars.Ribbon.RibbonForm
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         If disposing AndAlso components IsNot Nothing Then
             components.Dispose()
@@ -17,7 +17,7 @@ Partial Class frm_compras
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.RibbonControl = New DevExpress.XtraBars.Ribbon.RibbonControl()
@@ -26,22 +26,44 @@ Partial Class frm_compras
         Me.BTN_DELETE = New DevExpress.XtraBars.BarButtonItem()
         Me.LBL_RESULT_PROVIDER = New DevExpress.XtraBars.BarStaticItem()
         Me.LBL_RESULT_WAREH = New DevExpress.XtraBars.BarStaticItem()
+        Me.lbl_result_acc = New DevExpress.XtraBars.BarStaticItem()
+        Me.lbl_result_mat = New DevExpress.XtraBars.BarStaticItem()
+        Me.lbl_result_desc = New DevExpress.XtraBars.BarStaticItem()
         Me.RibbonPage1 = New DevExpress.XtraBars.Ribbon.RibbonPage()
         Me.RibbonPageGroup1 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.RibbonStatusBar = New DevExpress.XtraBars.Ribbon.RibbonStatusBar()
         Me.DockManager1 = New DevExpress.XtraBars.Docking.DockManager(Me.components)
         Me.DockPanel1 = New DevExpress.XtraBars.Docking.DockPanel()
         Me.DockPanel1_Container = New DevExpress.XtraBars.Docking.ControlContainer()
+        Me.btn_Add = New DevExpress.XtraEditors.SimpleButton()
+        Me.TXT_IMPORTE = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl17 = New DevExpress.XtraEditors.LabelControl()
+        Me.TXT_PRECION_PUB = New DevExpress.XtraEditors.TextEdit()
+        Me.CB_MATERIAL = New System.Windows.Forms.ComboBox()
+        Me.LabelControl13 = New DevExpress.XtraEditors.LabelControl()
+        Me.TextEdit5 = New DevExpress.XtraEditors.TextEdit()
+        Me.TXT_COSTO_UNIT = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl14 = New DevExpress.XtraEditors.LabelControl()
+        Me.CB_ACCESORIO = New System.Windows.Forms.ComboBox()
+        Me.CB_DESCRIPCION = New System.Windows.Forms.ComboBox()
+        Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl15 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
+        Me.TXT_LINEA = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl16 = New DevExpress.XtraEditors.LabelControl()
         Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
-        Me.TextEdit3 = New DevExpress.XtraEditors.TextEdit()
+        Me.txt_partidas = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
-        Me.TextEdit4 = New DevExpress.XtraEditors.TextEdit()
+        Me.txt_piezas = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
+        Me.TXT_CANTIDAD = New DevExpress.XtraEditors.TextEdit()
         Me.SeparatorControl1 = New DevExpress.XtraEditors.SeparatorControl()
+        Me.LabelControl12 = New DevExpress.XtraEditors.LabelControl()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
-        Me.TextEdit2 = New DevExpress.XtraEditors.TextEdit()
+        Me.txt_totales = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
-        Me.TextEdit1 = New DevExpress.XtraEditors.TextEdit()
+        Me.txt_t_subtotal = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.CB_ALMACEN = New System.Windows.Forms.ComboBox()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
@@ -53,49 +75,43 @@ Partial Class frm_compras
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.TXT_ID = New DevExpress.XtraEditors.TextEdit()
         Me.dgv_data = New System.Windows.Forms.DataGridView()
-        Me.col_cantidad = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.col_clave = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.col_accesorio = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.col_material = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.col_linea = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.col_descripcion = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.col_costo_unit = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.col_precio_pub = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.col_importe = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.TextEdit5 = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.RibbonControl, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DockManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.DockPanel1.SuspendLayout()
         Me.DockPanel1_Container.SuspendLayout()
+        CType(Me.TXT_IMPORTE.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TXT_PRECION_PUB.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TextEdit5.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TXT_COSTO_UNIT.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TXT_LINEA.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl2.SuspendLayout()
-        CType(Me.TextEdit3.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit4.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txt_partidas.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txt_piezas.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TXT_CANTIDAD.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SeparatorControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
-        CType(Me.TextEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txt_totales.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txt_t_subtotal.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DT_FECHA.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DT_FECHA.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TXT_T_COMPRA.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TXT_ID.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgv_data, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit5.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'RibbonControl
         '
         Me.RibbonControl.ExpandCollapseItem.Id = 0
-        Me.RibbonControl.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.RibbonControl.ExpandCollapseItem, Me.BTN_SAVE, Me.BTN_DELETE_ROW_SELEC, Me.BTN_DELETE, Me.LBL_RESULT_PROVIDER, Me.LBL_RESULT_WAREH})
+        Me.RibbonControl.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.RibbonControl.ExpandCollapseItem, Me.BTN_SAVE, Me.BTN_DELETE_ROW_SELEC, Me.BTN_DELETE, Me.LBL_RESULT_PROVIDER, Me.LBL_RESULT_WAREH, Me.lbl_result_acc, Me.lbl_result_mat, Me.lbl_result_desc})
         Me.RibbonControl.Location = New System.Drawing.Point(0, 0)
-        Me.RibbonControl.MaxItemId = 8
+        Me.RibbonControl.MaxItemId = 11
         Me.RibbonControl.Name = "RibbonControl"
         Me.RibbonControl.Pages.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPage() {Me.RibbonPage1})
         Me.RibbonControl.ShowApplicationButton = DevExpress.Utils.DefaultBoolean.[False]
         Me.RibbonControl.ShowExpandCollapseButton = DevExpress.Utils.DefaultBoolean.[True]
-        Me.RibbonControl.Size = New System.Drawing.Size(1143, 143)
+        Me.RibbonControl.Size = New System.Drawing.Size(1331, 143)
         Me.RibbonControl.StatusBar = Me.RibbonStatusBar
         '
         'BTN_SAVE
@@ -135,6 +151,27 @@ Partial Class frm_compras
         Me.LBL_RESULT_WAREH.ImageOptions.Image = Global.SILVER_ONE_ERP.My.Resources.Resources.boorderitem_32x32
         Me.LBL_RESULT_WAREH.Name = "LBL_RESULT_WAREH"
         '
+        'lbl_result_acc
+        '
+        Me.lbl_result_acc.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right
+        Me.lbl_result_acc.Caption = "..."
+        Me.lbl_result_acc.Id = 8
+        Me.lbl_result_acc.Name = "lbl_result_acc"
+        '
+        'lbl_result_mat
+        '
+        Me.lbl_result_mat.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right
+        Me.lbl_result_mat.Caption = "..."
+        Me.lbl_result_mat.Id = 9
+        Me.lbl_result_mat.Name = "lbl_result_mat"
+        '
+        'lbl_result_desc
+        '
+        Me.lbl_result_desc.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right
+        Me.lbl_result_desc.Caption = "..."
+        Me.lbl_result_desc.Id = 10
+        Me.lbl_result_desc.Name = "lbl_result_desc"
+        '
         'RibbonPage1
         '
         Me.RibbonPage1.Groups.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPageGroup() {Me.RibbonPageGroup1})
@@ -153,10 +190,13 @@ Partial Class frm_compras
         '
         Me.RibbonStatusBar.ItemLinks.Add(Me.LBL_RESULT_PROVIDER)
         Me.RibbonStatusBar.ItemLinks.Add(Me.LBL_RESULT_WAREH)
-        Me.RibbonStatusBar.Location = New System.Drawing.Point(0, 792)
+        Me.RibbonStatusBar.ItemLinks.Add(Me.lbl_result_acc)
+        Me.RibbonStatusBar.ItemLinks.Add(Me.lbl_result_mat)
+        Me.RibbonStatusBar.ItemLinks.Add(Me.lbl_result_desc)
+        Me.RibbonStatusBar.Location = New System.Drawing.Point(0, 722)
         Me.RibbonStatusBar.Name = "RibbonStatusBar"
         Me.RibbonStatusBar.Ribbon = Me.RibbonControl
-        Me.RibbonStatusBar.Size = New System.Drawing.Size(1143, 31)
+        Me.RibbonStatusBar.Size = New System.Drawing.Size(1331, 31)
         '
         'DockManager1
         '
@@ -173,16 +213,33 @@ Partial Class frm_compras
         Me.DockPanel1.Location = New System.Drawing.Point(0, 143)
         Me.DockPanel1.Name = "DockPanel1"
         Me.DockPanel1.Options.ShowCloseButton = False
-        Me.DockPanel1.OriginalSize = New System.Drawing.Size(346, 200)
-        Me.DockPanel1.Size = New System.Drawing.Size(346, 649)
+        Me.DockPanel1.OriginalSize = New System.Drawing.Size(510, 200)
+        Me.DockPanel1.Size = New System.Drawing.Size(510, 579)
         Me.DockPanel1.Text = "DATOS DE LA COMPRA"
         '
         'DockPanel1_Container
         '
+        Me.DockPanel1_Container.Controls.Add(Me.btn_Add)
+        Me.DockPanel1_Container.Controls.Add(Me.TXT_IMPORTE)
+        Me.DockPanel1_Container.Controls.Add(Me.LabelControl17)
+        Me.DockPanel1_Container.Controls.Add(Me.TXT_PRECION_PUB)
+        Me.DockPanel1_Container.Controls.Add(Me.CB_MATERIAL)
+        Me.DockPanel1_Container.Controls.Add(Me.LabelControl13)
         Me.DockPanel1_Container.Controls.Add(Me.TextEdit5)
+        Me.DockPanel1_Container.Controls.Add(Me.TXT_COSTO_UNIT)
+        Me.DockPanel1_Container.Controls.Add(Me.LabelControl14)
+        Me.DockPanel1_Container.Controls.Add(Me.CB_ACCESORIO)
+        Me.DockPanel1_Container.Controls.Add(Me.CB_DESCRIPCION)
+        Me.DockPanel1_Container.Controls.Add(Me.LabelControl10)
+        Me.DockPanel1_Container.Controls.Add(Me.LabelControl15)
         Me.DockPanel1_Container.Controls.Add(Me.LabelControl9)
+        Me.DockPanel1_Container.Controls.Add(Me.TXT_LINEA)
+        Me.DockPanel1_Container.Controls.Add(Me.LabelControl11)
+        Me.DockPanel1_Container.Controls.Add(Me.LabelControl16)
         Me.DockPanel1_Container.Controls.Add(Me.GroupControl2)
+        Me.DockPanel1_Container.Controls.Add(Me.TXT_CANTIDAD)
         Me.DockPanel1_Container.Controls.Add(Me.SeparatorControl1)
+        Me.DockPanel1_Container.Controls.Add(Me.LabelControl12)
         Me.DockPanel1_Container.Controls.Add(Me.GroupControl1)
         Me.DockPanel1_Container.Controls.Add(Me.CB_ALMACEN)
         Me.DockPanel1_Container.Controls.Add(Me.LabelControl4)
@@ -195,30 +252,171 @@ Partial Class frm_compras
         Me.DockPanel1_Container.Controls.Add(Me.TXT_ID)
         Me.DockPanel1_Container.Location = New System.Drawing.Point(4, 23)
         Me.DockPanel1_Container.Name = "DockPanel1_Container"
-        Me.DockPanel1_Container.Size = New System.Drawing.Size(337, 622)
+        Me.DockPanel1_Container.Size = New System.Drawing.Size(501, 552)
         Me.DockPanel1_Container.TabIndex = 0
+        '
+        'btn_Add
+        '
+        Me.btn_Add.ImageOptions.Image = Global.SILVER_ONE_ERP.My.Resources.Resources.add_32x32
+        Me.btn_Add.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.TopCenter
+        Me.btn_Add.Location = New System.Drawing.Point(440, 3)
+        Me.btn_Add.Name = "btn_Add"
+        Me.btn_Add.Size = New System.Drawing.Size(60, 39)
+        Me.btn_Add.TabIndex = 24
+        '
+        'TXT_IMPORTE
+        '
+        Me.TXT_IMPORTE.Location = New System.Drawing.Point(300, 358)
+        Me.TXT_IMPORTE.MenuManager = Me.RibbonControl
+        Me.TXT_IMPORTE.Name = "TXT_IMPORTE"
+        Me.TXT_IMPORTE.Properties.ReadOnly = True
+        Me.TXT_IMPORTE.Size = New System.Drawing.Size(150, 20)
+        Me.TXT_IMPORTE.TabIndex = 19
+        '
+        'LabelControl17
+        '
+        Me.LabelControl17.Location = New System.Drawing.Point(300, 339)
+        Me.LabelControl17.Name = "LabelControl17"
+        Me.LabelControl17.Size = New System.Drawing.Size(45, 13)
+        Me.LabelControl17.TabIndex = 18
+        Me.LabelControl17.Text = "IMPORTE"
+        '
+        'TXT_PRECION_PUB
+        '
+        Me.TXT_PRECION_PUB.Location = New System.Drawing.Point(146, 358)
+        Me.TXT_PRECION_PUB.MenuManager = Me.RibbonControl
+        Me.TXT_PRECION_PUB.Name = "TXT_PRECION_PUB"
+        Me.TXT_PRECION_PUB.Properties.ReadOnly = True
+        Me.TXT_PRECION_PUB.Size = New System.Drawing.Size(122, 20)
+        Me.TXT_PRECION_PUB.TabIndex = 23
+        '
+        'CB_MATERIAL
+        '
+        Me.CB_MATERIAL.FormattingEnabled = True
+        Me.CB_MATERIAL.Location = New System.Drawing.Point(146, 262)
+        Me.CB_MATERIAL.Name = "CB_MATERIAL"
+        Me.CB_MATERIAL.Size = New System.Drawing.Size(121, 21)
+        Me.CB_MATERIAL.TabIndex = 7
+        '
+        'LabelControl13
+        '
+        Me.LabelControl13.Location = New System.Drawing.Point(146, 339)
+        Me.LabelControl13.Name = "LabelControl13"
+        Me.LabelControl13.Size = New System.Drawing.Size(84, 13)
+        Me.LabelControl13.TabIndex = 22
+        Me.LabelControl13.Text = "PRECIO PUBLICO"
+        '
+        'TextEdit5
+        '
+        Me.TextEdit5.Location = New System.Drawing.Point(11, 71)
+        Me.TextEdit5.MenuManager = Me.RibbonControl
+        Me.TextEdit5.Name = "TextEdit5"
+        Me.TextEdit5.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextEdit5.Properties.Appearance.Options.UseFont = True
+        Me.TextEdit5.Size = New System.Drawing.Size(181, 22)
+        Me.TextEdit5.TabIndex = 1
+        '
+        'TXT_COSTO_UNIT
+        '
+        Me.TXT_COSTO_UNIT.Location = New System.Drawing.Point(11, 358)
+        Me.TXT_COSTO_UNIT.MenuManager = Me.RibbonControl
+        Me.TXT_COSTO_UNIT.Name = "TXT_COSTO_UNIT"
+        Me.TXT_COSTO_UNIT.Size = New System.Drawing.Size(121, 20)
+        Me.TXT_COSTO_UNIT.TabIndex = 9
+        '
+        'LabelControl14
+        '
+        Me.LabelControl14.Location = New System.Drawing.Point(11, 339)
+        Me.LabelControl14.Name = "LabelControl14"
+        Me.LabelControl14.Size = New System.Drawing.Size(88, 13)
+        Me.LabelControl14.TabIndex = 20
+        Me.LabelControl14.Text = "COSTO UNITARIO"
+        '
+        'CB_ACCESORIO
+        '
+        Me.CB_ACCESORIO.FormattingEnabled = True
+        Me.CB_ACCESORIO.Location = New System.Drawing.Point(11, 262)
+        Me.CB_ACCESORIO.Name = "CB_ACCESORIO"
+        Me.CB_ACCESORIO.Size = New System.Drawing.Size(121, 21)
+        Me.CB_ACCESORIO.TabIndex = 6
+        '
+        'CB_DESCRIPCION
+        '
+        Me.CB_DESCRIPCION.FormattingEnabled = True
+        Me.CB_DESCRIPCION.Location = New System.Drawing.Point(11, 312)
+        Me.CB_DESCRIPCION.Name = "CB_DESCRIPCION"
+        Me.CB_DESCRIPCION.Size = New System.Drawing.Size(364, 21)
+        Me.CB_DESCRIPCION.TabIndex = 8
+        '
+        'LabelControl10
+        '
+        Me.LabelControl10.Location = New System.Drawing.Point(146, 243)
+        Me.LabelControl10.Name = "LabelControl10"
+        Me.LabelControl10.Size = New System.Drawing.Size(50, 13)
+        Me.LabelControl10.TabIndex = 14
+        Me.LabelControl10.Text = "MATERIAL"
+        '
+        'LabelControl15
+        '
+        Me.LabelControl15.Location = New System.Drawing.Point(11, 293)
+        Me.LabelControl15.Name = "LabelControl15"
+        Me.LabelControl15.Size = New System.Drawing.Size(69, 13)
+        Me.LabelControl15.TabIndex = 18
+        Me.LabelControl15.Text = "DESCRIPCION"
+        '
+        'LabelControl9
+        '
+        Me.LabelControl9.Location = New System.Drawing.Point(11, 52)
+        Me.LabelControl9.Name = "LabelControl9"
+        Me.LabelControl9.Size = New System.Drawing.Size(111, 13)
+        Me.LabelControl9.TabIndex = 11
+        Me.LabelControl9.Text = "CLAVE DEL PRODUCTO"
+        '
+        'TXT_LINEA
+        '
+        Me.TXT_LINEA.Location = New System.Drawing.Point(300, 263)
+        Me.TXT_LINEA.MenuManager = Me.RibbonControl
+        Me.TXT_LINEA.Name = "TXT_LINEA"
+        Me.TXT_LINEA.Properties.ReadOnly = True
+        Me.TXT_LINEA.Size = New System.Drawing.Size(150, 20)
+        Me.TXT_LINEA.TabIndex = 17
+        '
+        'LabelControl11
+        '
+        Me.LabelControl11.Location = New System.Drawing.Point(11, 243)
+        Me.LabelControl11.Name = "LabelControl11"
+        Me.LabelControl11.Size = New System.Drawing.Size(60, 13)
+        Me.LabelControl11.TabIndex = 13
+        Me.LabelControl11.Text = "ACCESORIO"
+        '
+        'LabelControl16
+        '
+        Me.LabelControl16.Location = New System.Drawing.Point(300, 244)
+        Me.LabelControl16.Name = "LabelControl16"
+        Me.LabelControl16.Size = New System.Drawing.Size(29, 13)
+        Me.LabelControl16.TabIndex = 16
+        Me.LabelControl16.Text = "LINEA"
         '
         'GroupControl2
         '
-        Me.GroupControl2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.GroupControl2.Controls.Add(Me.TextEdit3)
+        Me.GroupControl2.Controls.Add(Me.txt_partidas)
         Me.GroupControl2.Controls.Add(Me.LabelControl7)
-        Me.GroupControl2.Controls.Add(Me.TextEdit4)
+        Me.GroupControl2.Controls.Add(Me.txt_piezas)
         Me.GroupControl2.Controls.Add(Me.LabelControl8)
-        Me.GroupControl2.Location = New System.Drawing.Point(8, 387)
+        Me.GroupControl2.Location = New System.Drawing.Point(11, 437)
         Me.GroupControl2.Name = "GroupControl2"
-        Me.GroupControl2.Size = New System.Drawing.Size(301, 88)
+        Me.GroupControl2.Size = New System.Drawing.Size(226, 95)
         Me.GroupControl2.TabIndex = 11
         Me.GroupControl2.Text = "PIEZAS TOTALES"
         '
-        'TextEdit3
+        'txt_partidas
         '
-        Me.TextEdit3.Location = New System.Drawing.Point(101, 54)
-        Me.TextEdit3.MenuManager = Me.RibbonControl
-        Me.TextEdit3.Name = "TextEdit3"
-        Me.TextEdit3.Size = New System.Drawing.Size(149, 20)
-        Me.TextEdit3.TabIndex = 9
+        Me.txt_partidas.Location = New System.Drawing.Point(101, 54)
+        Me.txt_partidas.MenuManager = Me.RibbonControl
+        Me.txt_partidas.Name = "txt_partidas"
+        Me.txt_partidas.Properties.ReadOnly = True
+        Me.txt_partidas.Size = New System.Drawing.Size(106, 20)
+        Me.txt_partidas.TabIndex = 9
         '
         'LabelControl7
         '
@@ -228,13 +426,14 @@ Partial Class frm_compras
         Me.LabelControl7.TabIndex = 8
         Me.LabelControl7.Text = "PARTIDAS:"
         '
-        'TextEdit4
+        'txt_piezas
         '
-        Me.TextEdit4.Location = New System.Drawing.Point(101, 28)
-        Me.TextEdit4.MenuManager = Me.RibbonControl
-        Me.TextEdit4.Name = "TextEdit4"
-        Me.TextEdit4.Size = New System.Drawing.Size(149, 20)
-        Me.TextEdit4.TabIndex = 7
+        Me.txt_piezas.Location = New System.Drawing.Point(101, 28)
+        Me.txt_piezas.MenuManager = Me.RibbonControl
+        Me.txt_piezas.Name = "txt_piezas"
+        Me.txt_piezas.Properties.ReadOnly = True
+        Me.txt_piezas.Size = New System.Drawing.Size(106, 20)
+        Me.txt_piezas.TabIndex = 7
         '
         'LabelControl8
         '
@@ -244,36 +443,51 @@ Partial Class frm_compras
         Me.LabelControl8.TabIndex = 6
         Me.LabelControl8.Text = "PIEZAS:"
         '
+        'TXT_CANTIDAD
+        '
+        Me.TXT_CANTIDAD.Location = New System.Drawing.Point(11, 217)
+        Me.TXT_CANTIDAD.MenuManager = Me.RibbonControl
+        Me.TXT_CANTIDAD.Name = "TXT_CANTIDAD"
+        Me.TXT_CANTIDAD.Size = New System.Drawing.Size(121, 20)
+        Me.TXT_CANTIDAD.TabIndex = 5
+        '
         'SeparatorControl1
         '
         Me.SeparatorControl1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.SeparatorControl1.Location = New System.Drawing.Point(11, 344)
+        Me.SeparatorControl1.Location = New System.Drawing.Point(8, 408)
         Me.SeparatorControl1.Name = "SeparatorControl1"
-        Me.SeparatorControl1.Size = New System.Drawing.Size(275, 23)
+        Me.SeparatorControl1.Size = New System.Drawing.Size(487, 23)
         Me.SeparatorControl1.TabIndex = 10
+        '
+        'LabelControl12
+        '
+        Me.LabelControl12.Location = New System.Drawing.Point(11, 198)
+        Me.LabelControl12.Name = "LabelControl12"
+        Me.LabelControl12.Size = New System.Drawing.Size(52, 13)
+        Me.LabelControl12.TabIndex = 11
+        Me.LabelControl12.Text = "CANTIDAD"
         '
         'GroupControl1
         '
-        Me.GroupControl1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.GroupControl1.Controls.Add(Me.TextEdit2)
+        Me.GroupControl1.Controls.Add(Me.txt_totales)
         Me.GroupControl1.Controls.Add(Me.LabelControl6)
-        Me.GroupControl1.Controls.Add(Me.TextEdit1)
+        Me.GroupControl1.Controls.Add(Me.txt_t_subtotal)
         Me.GroupControl1.Controls.Add(Me.LabelControl5)
-        Me.GroupControl1.Location = New System.Drawing.Point(8, 481)
+        Me.GroupControl1.Location = New System.Drawing.Point(243, 437)
         Me.GroupControl1.Name = "GroupControl1"
-        Me.GroupControl1.Size = New System.Drawing.Size(301, 94)
+        Me.GroupControl1.Size = New System.Drawing.Size(226, 95)
         Me.GroupControl1.TabIndex = 9
         Me.GroupControl1.Text = "TOTALES"
         '
-        'TextEdit2
+        'txt_totales
         '
-        Me.TextEdit2.Location = New System.Drawing.Point(101, 54)
-        Me.TextEdit2.MenuManager = Me.RibbonControl
-        Me.TextEdit2.Name = "TextEdit2"
-        Me.TextEdit2.Size = New System.Drawing.Size(149, 20)
-        Me.TextEdit2.TabIndex = 9
+        Me.txt_totales.Location = New System.Drawing.Point(101, 54)
+        Me.txt_totales.MenuManager = Me.RibbonControl
+        Me.txt_totales.Name = "txt_totales"
+        Me.txt_totales.Properties.ReadOnly = True
+        Me.txt_totales.Size = New System.Drawing.Size(106, 20)
+        Me.txt_totales.TabIndex = 9
         '
         'LabelControl6
         '
@@ -283,13 +497,14 @@ Partial Class frm_compras
         Me.LabelControl6.TabIndex = 8
         Me.LabelControl6.Text = "TOTAL:"
         '
-        'TextEdit1
+        'txt_t_subtotal
         '
-        Me.TextEdit1.Location = New System.Drawing.Point(101, 28)
-        Me.TextEdit1.MenuManager = Me.RibbonControl
-        Me.TextEdit1.Name = "TextEdit1"
-        Me.TextEdit1.Size = New System.Drawing.Size(149, 20)
-        Me.TextEdit1.TabIndex = 7
+        Me.txt_t_subtotal.Location = New System.Drawing.Point(101, 28)
+        Me.txt_t_subtotal.MenuManager = Me.RibbonControl
+        Me.txt_t_subtotal.Name = "txt_t_subtotal"
+        Me.txt_t_subtotal.Properties.ReadOnly = True
+        Me.txt_t_subtotal.Size = New System.Drawing.Size(106, 20)
+        Me.txt_t_subtotal.TabIndex = 7
         '
         'LabelControl5
         '
@@ -303,14 +518,14 @@ Partial Class frm_compras
         '
         Me.CB_ALMACEN.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.CB_ALMACEN.FormattingEnabled = True
-        Me.CB_ALMACEN.Location = New System.Drawing.Point(187, 286)
+        Me.CB_ALMACEN.Location = New System.Drawing.Point(146, 169)
         Me.CB_ALMACEN.Name = "CB_ALMACEN"
         Me.CB_ALMACEN.Size = New System.Drawing.Size(122, 21)
-        Me.CB_ALMACEN.TabIndex = 8
+        Me.CB_ALMACEN.TabIndex = 4
         '
         'LabelControl4
         '
-        Me.LabelControl4.Location = New System.Drawing.Point(187, 267)
+        Me.LabelControl4.Location = New System.Drawing.Point(146, 151)
         Me.LabelControl4.Name = "LabelControl4"
         Me.LabelControl4.Size = New System.Drawing.Size(47, 13)
         Me.LabelControl4.TabIndex = 7
@@ -319,17 +534,17 @@ Partial Class frm_compras
         'DT_FECHA
         '
         Me.DT_FECHA.EditValue = Nothing
-        Me.DT_FECHA.Location = New System.Drawing.Point(8, 287)
+        Me.DT_FECHA.Location = New System.Drawing.Point(11, 170)
         Me.DT_FECHA.MenuManager = Me.RibbonControl
         Me.DT_FECHA.Name = "DT_FECHA"
         Me.DT_FECHA.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DT_FECHA.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DT_FECHA.Size = New System.Drawing.Size(149, 20)
-        Me.DT_FECHA.TabIndex = 6
+        Me.DT_FECHA.Size = New System.Drawing.Size(121, 20)
+        Me.DT_FECHA.TabIndex = 3
         '
         'LabelControl3
         '
-        Me.LabelControl3.Location = New System.Drawing.Point(8, 268)
+        Me.LabelControl3.Location = New System.Drawing.Point(11, 151)
         Me.LabelControl3.Name = "LabelControl3"
         Me.LabelControl3.Size = New System.Drawing.Size(33, 13)
         Me.LabelControl3.TabIndex = 5
@@ -339,14 +554,14 @@ Partial Class frm_compras
         '
         Me.CB_PROVIDER.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.CB_PROVIDER.FormattingEnabled = True
-        Me.CB_PROVIDER.Location = New System.Drawing.Point(8, 223)
+        Me.CB_PROVIDER.Location = New System.Drawing.Point(11, 120)
         Me.CB_PROVIDER.Name = "CB_PROVIDER"
         Me.CB_PROVIDER.Size = New System.Drawing.Size(301, 21)
-        Me.CB_PROVIDER.TabIndex = 5
+        Me.CB_PROVIDER.TabIndex = 2
         '
         'LabelControl2
         '
-        Me.LabelControl2.Location = New System.Drawing.Point(8, 204)
+        Me.LabelControl2.Location = New System.Drawing.Point(11, 101)
         Me.LabelControl2.Name = "LabelControl2"
         Me.LabelControl2.Size = New System.Drawing.Size(61, 13)
         Me.LabelControl2.TabIndex = 4
@@ -355,7 +570,7 @@ Partial Class frm_compras
         'TXT_T_COMPRA
         '
         Me.TXT_T_COMPRA.EditValue = "DIRECTA"
-        Me.TXT_T_COMPRA.Location = New System.Drawing.Point(8, 166)
+        Me.TXT_T_COMPRA.Location = New System.Drawing.Point(209, 71)
         Me.TXT_T_COMPRA.MenuManager = Me.RibbonControl
         Me.TXT_T_COMPRA.Name = "TXT_T_COMPRA"
         Me.TXT_T_COMPRA.Properties.ReadOnly = True
@@ -364,7 +579,7 @@ Partial Class frm_compras
         '
         'LabelControl1
         '
-        Me.LabelControl1.Location = New System.Drawing.Point(8, 147)
+        Me.LabelControl1.Location = New System.Drawing.Point(209, 52)
         Me.LabelControl1.Name = "LabelControl1"
         Me.LabelControl1.Size = New System.Drawing.Size(86, 13)
         Me.LabelControl1.TabIndex = 1
@@ -377,98 +592,28 @@ Partial Class frm_compras
         Me.TXT_ID.Name = "TXT_ID"
         Me.TXT_ID.Properties.ReadOnly = True
         Me.TXT_ID.Size = New System.Drawing.Size(100, 20)
-        Me.TXT_ID.TabIndex = 0
+        Me.TXT_ID.TabIndex = 1000
         '
         'dgv_data
         '
+        Me.dgv_data.AllowUserToAddRows = False
+        Me.dgv_data.AllowUserToDeleteRows = False
         Me.dgv_data.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells
         Me.dgv_data.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
         Me.dgv_data.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgv_data.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.col_cantidad, Me.col_clave, Me.col_accesorio, Me.col_material, Me.col_linea, Me.col_descripcion, Me.col_costo_unit, Me.col_precio_pub, Me.col_importe})
         Me.dgv_data.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.dgv_data.Location = New System.Drawing.Point(346, 143)
+        Me.dgv_data.Location = New System.Drawing.Point(510, 143)
         Me.dgv_data.Name = "dgv_data"
-        Me.dgv_data.Size = New System.Drawing.Size(797, 649)
+        Me.dgv_data.Size = New System.Drawing.Size(821, 579)
         Me.dgv_data.TabIndex = 7
-        '
-        'col_cantidad
-        '
-        Me.col_cantidad.HeaderText = "CANTIDAD"
-        Me.col_cantidad.Name = "col_cantidad"
-        Me.col_cantidad.Width = 84
-        '
-        'col_clave
-        '
-        Me.col_clave.HeaderText = "CLAVE"
-        Me.col_clave.Name = "col_clave"
-        Me.col_clave.Width = 63
-        '
-        'col_accesorio
-        '
-        Me.col_accesorio.HeaderText = "ACCESORIO"
-        Me.col_accesorio.Name = "col_accesorio"
-        Me.col_accesorio.Width = 92
-        '
-        'col_material
-        '
-        Me.col_material.HeaderText = "MATERIAL"
-        Me.col_material.Name = "col_material"
-        Me.col_material.Width = 82
-        '
-        'col_linea
-        '
-        Me.col_linea.HeaderText = "LINEA"
-        Me.col_linea.Name = "col_linea"
-        Me.col_linea.Width = 61
-        '
-        'col_descripcion
-        '
-        Me.col_descripcion.HeaderText = "DESCRIPCION"
-        Me.col_descripcion.Name = "col_descripcion"
-        Me.col_descripcion.Width = 101
-        '
-        'col_costo_unit
-        '
-        Me.col_costo_unit.HeaderText = "COSTO UNITARIO"
-        Me.col_costo_unit.Name = "col_costo_unit"
-        Me.col_costo_unit.Width = 110
-        '
-        'col_precio_pub
-        '
-        Me.col_precio_pub.HeaderText = "PRECIO PUBLICO"
-        Me.col_precio_pub.Name = "col_precio_pub"
-        Me.col_precio_pub.Width = 106
-        '
-        'col_importe
-        '
-        Me.col_importe.HeaderText = "IMPORTE"
-        Me.col_importe.Name = "col_importe"
-        Me.col_importe.Width = 77
-        '
-        'TextEdit5
-        '
-        Me.TextEdit5.Location = New System.Drawing.Point(131, 60)
-        Me.TextEdit5.MenuManager = Me.RibbonControl
-        Me.TextEdit5.Name = "TextEdit5"
-        Me.TextEdit5.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextEdit5.Properties.Appearance.Options.UseFont = True
-        Me.TextEdit5.Size = New System.Drawing.Size(197, 30)
-        Me.TextEdit5.TabIndex = 12
-        '
-        'LabelControl9
-        '
-        Me.LabelControl9.Location = New System.Drawing.Point(14, 77)
-        Me.LabelControl9.Name = "LabelControl9"
-        Me.LabelControl9.Size = New System.Drawing.Size(111, 13)
-        Me.LabelControl9.TabIndex = 11
-        Me.LabelControl9.Text = "CLAVE DEL PRODUCTO"
         '
         'frm_compras
         '
+        Me.AcceptButton = Me.btn_Add
         Me.AllowFormGlass = DevExpress.Utils.DefaultBoolean.[False]
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1143, 823)
+        Me.ClientSize = New System.Drawing.Size(1331, 753)
         Me.Controls.Add(Me.dgv_data)
         Me.Controls.Add(Me.DockPanel1)
         Me.Controls.Add(Me.RibbonStatusBar)
@@ -483,23 +628,28 @@ Partial Class frm_compras
         Me.DockPanel1.ResumeLayout(False)
         Me.DockPanel1_Container.ResumeLayout(False)
         Me.DockPanel1_Container.PerformLayout()
+        CType(Me.TXT_IMPORTE.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TXT_PRECION_PUB.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TextEdit5.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TXT_COSTO_UNIT.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TXT_LINEA.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl2.ResumeLayout(False)
         Me.GroupControl2.PerformLayout()
-        CType(Me.TextEdit3.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit4.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txt_partidas.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txt_piezas.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TXT_CANTIDAD.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SeparatorControl1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl1.ResumeLayout(False)
         Me.GroupControl1.PerformLayout()
-        CType(Me.TextEdit2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txt_totales.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txt_t_subtotal.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DT_FECHA.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DT_FECHA.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TXT_T_COMPRA.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TXT_ID.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dgv_data, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit5.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -525,28 +675,39 @@ Partial Class frm_compras
     Friend WithEvents CB_ALMACEN As ComboBox
     Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GroupControl1 As DevExpress.XtraEditors.GroupControl
-    Friend WithEvents TextEdit1 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents txt_t_subtotal As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents TextEdit2 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents txt_totales As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents SeparatorControl1 As DevExpress.XtraEditors.SeparatorControl
     Friend WithEvents LBL_RESULT_PROVIDER As DevExpress.XtraBars.BarStaticItem
     Friend WithEvents LBL_RESULT_WAREH As DevExpress.XtraBars.BarStaticItem
-    Friend WithEvents dgv_data As DataGridView
     Friend WithEvents GroupControl2 As DevExpress.XtraEditors.GroupControl
-    Friend WithEvents TextEdit3 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents txt_partidas As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl7 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents TextEdit4 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents txt_piezas As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents col_cantidad As DataGridViewTextBoxColumn
-    Friend WithEvents col_clave As DataGridViewTextBoxColumn
-    Friend WithEvents col_accesorio As DataGridViewTextBoxColumn
-    Friend WithEvents col_material As DataGridViewTextBoxColumn
-    Friend WithEvents col_linea As DataGridViewTextBoxColumn
-    Friend WithEvents col_descripcion As DataGridViewTextBoxColumn
-    Friend WithEvents col_costo_unit As DataGridViewTextBoxColumn
-    Friend WithEvents col_precio_pub As DataGridViewTextBoxColumn
-    Friend WithEvents col_importe As DataGridViewTextBoxColumn
     Friend WithEvents TextEdit5 As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl9 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents dgv_data As DataGridView
+    Friend WithEvents CB_MATERIAL As ComboBox
+    Friend WithEvents CB_ACCESORIO As ComboBox
+    Friend WithEvents LabelControl10 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl11 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TXT_CANTIDAD As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl12 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TXT_PRECION_PUB As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl13 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TXT_COSTO_UNIT As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl14 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents CB_DESCRIPCION As ComboBox
+    Friend WithEvents LabelControl15 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TXT_LINEA As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl16 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TXT_IMPORTE As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl17 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents lbl_result_acc As DevExpress.XtraBars.BarStaticItem
+    Friend WithEvents lbl_result_mat As DevExpress.XtraBars.BarStaticItem
+    Friend WithEvents lbl_result_desc As DevExpress.XtraBars.BarStaticItem
+    Friend WithEvents btn_Add As DevExpress.XtraEditors.SimpleButton
 End Class

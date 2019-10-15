@@ -77,6 +77,9 @@
   <PropertyGroup>
     <ApplicationIcon>Resources\ICO_APP.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="CURPLib">
       <HintPath>..\..\..\..\..\Downloads\ObtieneCURP\ObtieneCURP\bin\Debug\CURPLib.dll</HintPath>
@@ -137,6 +140,12 @@
       <DependentUpon>frm_accessories.vb</DependentUpon>
     </Compile>
     <Compile Include="Administrador\frm_accessories.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administrador\frm_add_article.Designer.vb">
+      <DependentUpon>frm_add_article.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Administrador\frm_add_article.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Administrador\frm_agents.Designer.vb">
@@ -292,6 +301,9 @@
     <EmbeddedResource Include="Administrador\frm_accessories.resx">
       <DependentUpon>frm_accessories.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Administrador\frm_add_article.resx">
+      <DependentUpon>frm_add_article.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Administrador\frm_agents.resx">
       <DependentUpon>frm_agents.vb</DependentUpon>
     </EmbeddedResource>
@@ -374,6 +386,7 @@
       <DependentUpon>frm_word.vb</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
+    <None Include="My Project\app.manifest" />
     <None Include="My Project\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
@@ -672,6 +685,7 @@
     <None Include="Resources\deletetable_16x16.png" />
     <None Include="Resources\currency_32x32.png" />
     <None Include="Resources\currency_16x16.png" />
+    <None Include="Resources\add_32x32.png" />
     <Content Include="Resources\ICO_APP.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />

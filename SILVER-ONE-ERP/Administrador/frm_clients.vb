@@ -1,22 +1,39 @@
-﻿Imports DevExpress.XtraEditors
+﻿'LIBRERIA DEVEXPRESS QUE PERMITE CODIGO PARA UTILIZAR UN XtraMessageBox SIMILAR A MessageBox
+Imports DevExpress.XtraEditors
+'LIBRERIAS SQL PARA EJECUTAR COMANDOS DESDE SQL COMMANDO EN EL SISTEMA
 Imports System.Data
 Imports System.Data.SqlClient
+'LIBRERIA DEVEXPRESS QUE PERMITE CODIGO PARA LA PROPIEDAD DE UN ELEMENTO DE LA BARRA INFERIOR DEL FORMULARIO
 Imports DevExpress.XtraBars
+'LIBRERIA QUE PERMITE LECTURA Y ESCRITURA DE ARCHIVOS BINARIOS
 Imports System.IO
 Public Class frm_clients
-    Dim array_nombres(,) As String
+    Dim array_nombres(,) As String 'ARREGLO BIDIMENSIONAL DE TIPO CADENA PARA ASIGNACION DE VALORES EN ARRAY_NOMBRES DECLARADO EN EL EVENTO LOAD DE LA APLICACION
 
 
     Sub LIST_FOLIO()
         Try
+            'ESTABLECEMOS LA CONEXION A LA BASE DE DATOS
             Connect_Database()
+            'SE EJECUTA UN NUEVO COMANDO SP_LIST_CODE_CLIENT E INDICAMOS MEDIANTE With {.CommandType = CommandType.StoredProcedure} QUE SE TRATA DE UN PROCEDIMIENTO ALMACENADO
             Command = New SqlCommand("SP_LIST_CODE_CLIENT", connection) With {.CommandType = CommandType.StoredProcedure}
+
+            'INDICAMOS QUE ESTE COMANDO TENDRA PARAMETROS ADICIONALES PARA PODER EJECUTARSE Y DE SER POSIBLE RETORNAR UN VALOR
             With Command
+                'SE ENVIA COMO PARAMETRO EL NOMBRE DEL USUARIO ACTUAL PARA PODER OBTENER EL FOLIO CORRESPONDIENTE
                 .Parameters.Add("@US_USERNAME", SqlDbType.NVarChar, 100).Value = frn_main_form.LBL_USERNAME.Caption
+                'DECLARAMOS UNA VARIABLE DE TIPO SQLPARAMETER CON EL NOMBRE DEL @MENSAJE DE TIPO NVARCHAR Y LONGITUD 200, MISMO QUE SE DECLARO EN EL CUERPO DEL PROCEDIMIENTO ALMACENADO SP_LIST_CODE_CLIENT
                 Dim Message As New SqlParameter("@MENSAJE", SqlDbType.NVarChar, 200)
+                'INDICAMOS QUE SE TRATA DE UN PARAMETRO DE TIPO OUTPUT
                 Message.Direction = ParameterDirection.Output
+                'A NUESTRO COMANDO A EJCUTAR LE AÑADIMOS EL PARAMETRO NECESARIO PARA SU EJECUCION
                 Command.Parameters.Add(Message)
+                'LE ASIGNAMOS A LA VARIABLE    Public Rows As Integer LA EJECUCION DEL COMANDO ACTUAL Command = New SqlCommand("SP_LIST_CODE_CLIENT", connection)
                 Rows = Command.ExecuteNonQuery
+                'SI EL RESULTADO DE LA CONSULTA ES MAYOR A CERO, ES DECIR QUE SE HAN ENCONTRADO REGISTROS DE LA EJCUCION DE LA CONSULTA ENTONCES
+                'LE ASIGNAMOS EL TEXTO QUE OBTIENE DESDE OUTPUT A LA ETIQUETA DE LA BARRA INFERIOR DEL FORMULARIO Y LA HACEMOS VISIBLE
+                'SI OBTIENE EL SEGUNDO O TECER VALOR DE OUTPUT DESDE EL PROCEDIMIENTO ALMACENADO SP_LIST_CODE_CLIENT SE ASGINA AL SIGUIENTE CODIGO LB_RESULT.Visibility = BarItemVisibility.Always
+                'LB_RESULT.Caption = Convert.ToString(Message.Value)
                 If (Rows > 0) Then
                     LB_FOLIO.Visibility = BarItemVisibility.Always
                     LB_FOLIO.Caption = Convert.ToString(Message.Value)
@@ -25,31 +42,49 @@ Public Class frm_clients
                     LB_FOLIO.Caption = Convert.ToString(Message.Value)
                 End If
             End With
+            'UTILIZAMOS LA PROPIEDAD SELECTCOMMAND PARA SELECCIONAR EL O LOS REGISTROS QUE COMPRENDAN LA CONSULTA DEL PROCEDIMIENTO ALMACENADO SP_LIST_CODE_CLIENT
             Adapter.SelectCommand = Command
+            'SE CREA UN NUEVO DATATABLE
             DataT = New DataTable
+            'INDICAMOS QUE EL ADAPTADOR DE LLENARA CON EL VALOR DE UN DATATABLE
             Adapter.Fill(DataT)
+            'AL CONTROL CB_FOLIO LE ASIGNAREMOS SU FUENTE DE DATOS A LOS QUE CONTENGA EL DATATABLE
             With CB_FOLIO
                 .DataSource = DataT
-                .ValueMember = "ID_FOLIOS"
-                .DisplayMember = "FO_CONCAT"
+                'VALUEMEMBER ES EL VALOR QUE TENDRA CADA QUE SE REALICE UNA SELECCION
+                'DISPLAYMEMBER ES EL VALOR QUE SE MOSTRARA PERO, NO ES EL QUE TOMA EL VALOR UNA VEZ SELECCIONADO UN DATO DE LA LISTA
+                .ValueMember = "ID_FOLIOS" 'EL VALOR QUE TENDRA
+                .DisplayMember = "FO_CONCAT" 'EL VALOR QUE SE MOSTRARA
             End With
         Catch ex As Exception
+            'SE MUESTRA UN MENSAJE DE ERROR INDICANDO QUE ALGO DENTRO DEL CODIGO TRY ESTA MAL
             XtraMessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error)
         Finally
+            'FINALMENTE SE CIERRA LA CONEXION A LA BASE DE DATOS CON ESTE METODO QUE PROVIENE DESDE MetodosClases
             Disconnect_Database()
 
         End Try
     End Sub
     Sub LIST_CITY()
         Try
+            'ESTABLECEMOS LA CONEXION A LA BASE DE DATOS
             Connect_Database()
+            'SE EJECUTA UN NUEVO COMANDO SP_LIST_CITY E INDICAMOS MEDIANTE With {.CommandType = CommandType.StoredProcedure} QUE SE TRATA DE UN PROCEDIMIENTO ALMACENADO
             Command = New SqlCommand("SP_LIST_CITY", connection) With {.CommandType = CommandType.StoredProcedure}
+            'INDICAMOS QUE ESTE COMANDO TENDRA PARAMETROS ADICIONALES PARA PODER EJECUTARSE Y DE SER POSIBLE RETORNAR UN VALOR
             With Command
-                '   .Parameters.Add("@US_USERNAME", SqlDbType.NVarChar, 100).Value = frm_main_menu.lbl_user_name.Caption
+                'DECLARAMOS UNA VARIABLE DE TIPO SQLPARAMETER CON EL NOMBRE DEL @MENSAJE DE TIPO NVARCHAR Y LONGITUD 200, MISMO QUE SE DECLARO EN EL CUERPO DEL PROCEDIMIENTO ALMACENADO SP_LIST_CITY
                 Dim Message As New SqlParameter("@MENSAJE", SqlDbType.NVarChar, 200)
+                'INDICAMOS QUE SE TRATA DE UN PARAMETRO DE TIPO OUTPUT
                 Message.Direction = ParameterDirection.Output
+                'A NUESTRO COMANDO A EJCUTAR LE AÑADIMOS EL PARAMETRO NECESARIO PARA SU EJECUCION
                 Command.Parameters.Add(Message)
+                'LE ASIGNAMOS A LA VARIABLE    Public Rows As Integer LA EJECUCION DEL COMANDO ACTUAL Command = New SqlCommand("SP_LIST_CITY", connection)
                 Rows = Command.ExecuteNonQuery
+                'SI EL RESULTADO DE LA CONSULTA ES MAYOR A CERO, ES DECIR QUE SE HAN ENCONTRADO REGISTROS DE LA EJCUCION DE LA CONSULTA ENTONCES
+                'LE ASIGNAMOS EL TEXTO QUE OBTIENE DESDE OUTPUT A LA ETIQUETA DE LA BARRA INFERIOR DEL FORMULARIO Y LA HACEMOS VISIBLE
+                'SI OBTIENE EL SEGUNDO O TECER VALOR DE OUTPUT DESDE EL PROCEDIMIENTO ALMACENADO SP_LIST_CITY SE ASGINA AL SIGUIENTE CODIGO LB_RESULT.Visibility = BarItemVisibility.Always
+                'LB_RESULT.Caption = Convert.ToString(Message.Value)
                 If (Rows > 0) Then
                     LB_FOLIO.Visibility = BarItemVisibility.Always
                     LB_FOLIO.Caption = Convert.ToString(Message.Value)
@@ -58,31 +93,52 @@ Public Class frm_clients
                     LB_FOLIO.Caption = Convert.ToString(Message.Value)
                 End If
             End With
+
+            'UTILIZAMOS LA PROPIEDAD SELECTCOMMAND PARA SELECCIONAR EL O LOS REGISTROS QUE COMPRENDAN LA CONSULTA DEL PROCEDIMIENTO ALMACENADO SP_LIST_CODE_CITY
             Adapter.SelectCommand = Command
+            'SE CREA UN NUEVO DATATABLE
             DataT = New DataTable
+            'INDICAMOS QUE EL ADAPTADOR DE LLENARA CON EL VALOR DE UN DATATABLE
             Adapter.Fill(DataT)
+            'AL CONTROL CB_FOLIO LE ASIGNAREMOS SU FUENTE DE DATOS A LOS QUE CONTENGA EL DATATABLE
             With CB_CITY
                 .DataSource = DataT
-                .ValueMember = "ID_CITY"
-                .DisplayMember = "CI_NAME"
+                'VALUEMEMBER ES EL VALOR QUE TENDRA CADA QUE SE REALICE UNA SELECCION
+                'DISPLAYMEMBER ES EL VALOR QUE SE MOSTRARA PERO, NO ES EL QUE TOMA EL VALOR UNA VEZ SELECCIONADO UN DATO DE LA LISTA
+                .ValueMember = "ID_CITY" 'EL VALOR QUE TENDRA
+                .DisplayMember = "CI_NAME" 'EL VALOR QUE SE MOSTRARA
             End With
         Catch ex As Exception
+            'SE MUESTRA UN MENSAJE DE ERROR INDICANDO QUE ALGO DENTRO DEL CODIGO TRY ESTA MAL
             XtraMessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error)
         Finally
+            'FINALMENTE SE CIERRA LA CONEXION A LA BASE DE DATOS CON ESTE METODO QUE PROVIENE DESDE MetodosClases
             Disconnect_Database()
 
         End Try
     End Sub
     Sub LIST_ESTATUS()
         Try
+            'ESTABLECE LA CONEXION A LA BASE DE DATOS
             Connect_Database()
+            'SE EJECUTA UN NUEVO COMANDO SP_LIST_ESTATUS_CLIENT E INDICAMOS MEDIANTE With {.CommandType = CommandType.StoredProcedure} QUE SE TRATA DE UN PROCEDIMIENTO ALMACENADO
             Command = New SqlCommand("SP_LIST_ESTATUS_CLIENT", connection) With {.CommandType = CommandType.StoredProcedure}
+
+            'INDICAMOS QUE ESTE COMANDO TENDRA PARAMETROS ADICIONALES PARA PODER EJECUTARSE Y DE SER POSIBLE RETORNAR UN VALOR
             With Command
-                '   .Parameters.Add("@US_USERNAME", SqlDbType.NVarChar, 100).Value = frm_main_menu.lbl_user_name.Caption
+                'DECLARAMOS UNA VARIABLE DE TIPO SQLPARAMETER CON EL NOMBRE DEL @MENSAJE DE TIPO NVARCHAR Y LONGITUD 200, MISMO QUE SE DECLARO EN EL CUERPO DEL PROCEDIMIENTO ALMACENADO SP_LIST_ESTATUS_CLIENT
                 Dim Message As New SqlParameter("@MENSAJE", SqlDbType.NVarChar, 200)
+                'INDICAMOS QUE SE TRATA DE UN PARAMETRO DE TIPO OUTPUT
                 Message.Direction = ParameterDirection.Output
+                'A NUESTRO COMANDO A EJCUTAR LE AÑADIMOS EL PARAMETRO NECESARIO PARA SU EJECUCION
                 Command.Parameters.Add(Message)
+                'LE ASIGNAMOS A LA VARIABLE    Public Rows As Integer LA EJECUCION DEL COMANDO ACTUAL Command = New SqlCommand("SP_LIST_ESTATUS_CLIENT", connection)
                 Rows = Command.ExecuteNonQuery
+                'SI EL RESULTADO DE LA CONSULTA ES MAYOR A CERO, ES DECIR QUE SE HAN ENCONTRADO REGISTROS DE LA EJCUCION DE LA CONSULTA ENTONCES
+                'LE ASIGNAMOS EL TEXTO QUE OBTIENE DESDE OUTPUT A LA ETIQUETA DE LA BARRA INFERIOR DEL FORMULARIO Y LA HACEMOS VISIBLE
+                'SI OBTIENE EL SEGUNDO O TECER VALOR DE OUTPUT DESDE EL PROCEDIMIENTO ALMACENADO SP_LIST_ESTATUS_CLIENT SE ASGINA AL SIGUIENTE CODIGO LB_RESULT.Visibility = BarItemVisibility.Always
+                'LB_RESULT.Caption = Convert.ToString(Message.Value)
+
                 If (Rows > 0) Then
                     LB_FOLIO.Visibility = BarItemVisibility.Always
                     LB_FOLIO.Caption = Convert.ToString(Message.Value)
@@ -91,31 +147,53 @@ Public Class frm_clients
                     LB_FOLIO.Caption = Convert.ToString(Message.Value)
                 End If
             End With
+            'UTILIZAMOS LA PROPIEDAD SELECTCOMMAND PARA SELECCIONAR EL O LOS REGISTROS QUE COMPRENDAN LA CONSULTA DEL PROCEDIMIENTO ALMACENADO SP_LIST_ESTATUS_CLIENT
             Adapter.SelectCommand = Command
+            'SE CREA UN NUEVO DATATABLE
             DataT = New DataTable
+            'INDICAMOS QUE EL ADAPTADOR DE LLENARA CON EL VALOR DE UN DATATABLE
             Adapter.Fill(DataT)
+            'AL CONTROL CB_STATUS LE ASIGNAREMOS SU FUENTE DE DATOS A LOS QUE CONTENGA EL DATATABLE
             With CB_STATUS
                 .DataSource = DataT
-                .ValueMember = "ID_STATUS_CLIENT"
-                .DisplayMember = "ST_NAME"
+                'VALUEMEMBER ES EL VALOR QUE TENDRA CADA QUE SE REALICE UNA SELECCION
+                'DISPLAYMEMBER ES EL VALOR QUE SE MOSTRARA PERO, NO ES EL QUE TOMA EL VALOR UNA VEZ SELECCIONADO UN DATO DE LA LISTA
+                .ValueMember = "ID_STATUS_CLIENT" 'EL VALOR QUE TENDRA
+                .DisplayMember = "ST_NAME" 'EL VALOR QUE SE MOSTRARA
             End With
         Catch ex As Exception
+            'SE MUESTRA UN MENSAJE DE ERROR INDICANDO QUE ALGO DENTRO DEL CODIGO TRY ESTA MAL
             XtraMessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error)
         Finally
+            'FINALMENTE SE CIERRA LA CONEXION A LA BASE DE DATOS CON ESTE METODO QUE PROVIENE DESDE MetodosClases
             Disconnect_Database()
 
         End Try
     End Sub
+    'METODO QUE OBTIENE EL VALOR DEL ESTATUS DEL CLIENTE AL HACER DOBLE CLIC SOBRE UN REGISTRO
     Sub LIST_VALUE_ESTATUS()
         Try
+            'ESTABLECEMOS LA CONEXION A LA BASE DE DATOS
             Connect_Database()
+            'SE EJECUTA UN NUEVO COMANDO SP_VALUE_STATUS_CLIENTS_CLIENTS E INDICAMOS MEDIANTE With {.CommandType = CommandType.StoredProcedure} QUE SE TRATA DE UN PROCEDIMIENTO ALMACENADO
             Command = New SqlCommand("SP_VALUE_STATUS_CLIENTS_CLIENTS", connection) With {.CommandType = CommandType.StoredProcedure}
+
+            'INDICAMOS QUE ESTE COMANDO TENDRA PARAMETROS ADICIONALES PARA PODER EJECUTARSE Y DE SER POSIBLE RETORNAR UN VALOR
             With Command
-                .Parameters.Add("@ID_STATUS_CLIENT", SqlDbType.NVarChar, 100).Value = TXT_ID.Text
+                .Parameters.Add("@ID_STATUS_CLIENT", SqlDbType.NVarChar, 100).Value = TXT_ID.Text 'SE ENVIA COMO PARAMETRO EL ID_STATUS_CLIENT UNA VEZ PRESIONADO DOS VECES CLIC EN LA TABLA DE REGISTROS
+
+                'DECLARAMOS UNA VARIABLE DE TIPO SQLPARAMETER CON EL NOMBRE DEL @MENSAJE DE TIPO NVARCHAR Y LONGITUD 200, MISMO QUE SE DECLARO EN EL CUERPO DEL PROCEDIMIENTO ALMACENADO SP_LIST_ESTATUS_CLIENT
                 Dim Message As New SqlParameter("@MENSAJE", SqlDbType.NVarChar, 200)
+                'INDICAMOS QUE SE TRATA DE UN PARAMETRO DE TIPO OUTPUT
                 Message.Direction = ParameterDirection.Output
+                'A NUESTRO COMANDO A EJCUTAR LE AÑADIMOS EL PARAMETRO NECESARIO PARA SU EJECUCION
                 Command.Parameters.Add(Message)
+                'LE ASIGNAMOS A LA VARIABLE    Public Rows As Integer LA EJECUCION DEL COMANDO ACTUAL Command = New SqlCommand("SP_VALUE_STATUS_CLIENTS_CLIENTS", connection)
                 Rows = Command.ExecuteNonQuery
+                'SI EL RESULTADO DE LA CONSULTA ES MAYOR A CERO, ES DECIR QUE SE HAN ENCONTRADO REGISTROS DE LA EJCUCION DE LA CONSULTA ENTONCES
+                'LE ASIGNAMOS EL TEXTO QUE OBTIENE DESDE OUTPUT A LA ETIQUETA DE LA BARRA INFERIOR DEL FORMULARIO Y LA HACEMOS VISIBLE
+                'SI OBTIENE EL SEGUNDO O TECER VALOR DE OUTPUT DESDE EL PROCEDIMIENTO ALMACENADO SP_VALUE_STATUS_CLIENTS_CLIENTS SE ASGINA AL SIGUIENTE CODIGO LB_RESULT.Visibility = BarItemVisibility.Always
+                'LB_RESULT.Caption = Convert.ToString(Message.Value)
                 If (Rows > 0) Then
                     LB_FOLIO.Visibility = BarItemVisibility.Always
                     LB_FOLIO.Caption = Convert.ToString(Message.Value)
@@ -124,31 +202,53 @@ Public Class frm_clients
                     LB_FOLIO.Caption = Convert.ToString(Message.Value)
                 End If
             End With
+
+
+            'UTILIZAMOS LA PROPIEDAD SELECTCOMMAND PARA SELECCIONAR EL O LOS REGISTROS QUE COMPRENDAN LA CONSULTA DEL PROCEDIMIENTO ALMACENADO SP_VALUE_STATUS_CLIENTS_CLIENTS
             Adapter.SelectCommand = Command
+            'SE CREA UN NUEVO DATATABLE
             DataT = New DataTable
+            'INDICAMOS QUE EL ADAPTADOR DE LLENARA CON EL VALOR DE UN DATATABLE
             Adapter.Fill(DataT)
+            'AL CONTROL CB_STATUS LE ASIGNAREMOS SU FUENTE DE DATOS A LOS QUE CONTENGA EL DATATABLE
             With CB_STATUS
                 .DataSource = DataT
-                .ValueMember = "ID_STATUS_CLIENT"
-                .DisplayMember = "ST_NAME"
+                'VALUEMEMBER ES EL VALOR QUE TENDRA CADA QUE SE REALICE UNA SELECCION
+                'DISPLAYMEMBER ES EL VALOR QUE SE MOSTRARA PERO, NO ES EL QUE TOMA EL VALOR UNA VEZ SELECCIONADO UN DATO DE LA LISTA
+                .ValueMember = "ID_STATUS_CLIENT" 'EL VALOR QUE TENDRA
+                .DisplayMember = "ST_NAME" 'EL VALOR QUE SE MOSTRARA
             End With
         Catch ex As Exception
+            'SE MUESTRA UN MENSAJE DE ERROR INDICANDO QUE ALGO DENTRO DEL CODIGO TRY ESTA MAL
             XtraMessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error)
         Finally
+            'FINALMENTE SE CIERRA LA CONEXION A LA BASE DE DATOS CON ESTE METODO QUE PROVIENE DESDE MetodosClases
             Disconnect_Database()
-
         End Try
     End Sub
 
+    'METODO QUE LLENA LA TABLA CON REGISTROS, TAMBIEN ACTUALIZA LA VISTA DE REGISTROS DESPUES DE GUARDAR, MODIFICAR Y ELIMINAR LOS REGISTROS
     Sub FILL_DATA()
         Try
+            'SE ESTABLECE LA CONEXION A LA BASE DE DATOS
             Connect_Database()
+            'SE EJECUTA UN NUEVO COMANDO SP_SILV_CLIENTS_VIEW E INDICAMOS MEDIANTE With {.CommandType = CommandType.StoredProcedure} QUE SE TRATA DE UN PROCEDIMIENTO ALMACENADO
             Command = New SqlCommand("SP_SILV_CLIENTS_VIEW", connection) With {.CommandType = CommandType.StoredProcedure}
+
+            'INDICAMOS QUE ESTE COMANDO TENDRA PARAMETROS ADICIONALES PARA PODER EJECUTARSE Y DE SER POSIBLE RETORNAR UN VALOR
             With Command
+                'DECLARAMOS UNA VARIABLE DE TIPO SQLPARAMETER CON EL NOMBRE DEL @MENSAJE DE TIPO NVARCHAR Y LONGITUD 200, MISMO QUE SE DECLARO EN EL CUERPO DEL PROCEDIMIENTO ALMACENADO SP_SILV_CLIENTS_VIEW
                 Dim Message As New SqlParameter("@MENSAJE", SqlDbType.NVarChar, 200)
+                'INDICAMOS QUE SE TRATA DE UN PARAMETRO DE TIPO OUTPUT
                 Message.Direction = ParameterDirection.Output
+                'A NUESTRO COMANDO A EJCUTAR LE AÑADIMOS EL PARAMETRO NECESARIO PARA SU EJECUCION
                 Command.Parameters.Add(Message)
+                'LE ASIGNAMOS A LA VARIABLE    Public Rows As Integer LA EJECUCION DEL COMANDO ACTUAL Command = New SqlCommand("SP_SILV_CLIENTS_VIEW", connection)
                 Rows = Command.ExecuteNonQuery
+                'SI EL RESULTADO DE LA CONSULTA ES MAYOR A CERO, ES DECIR QUE SE HAN ENCONTRADO REGISTROS DE LA EJCUCION DE LA CONSULTA ENTONCES
+                'LE ASIGNAMOS EL TEXTO QUE OBTIENE DESDE OUTPUT A LA ETIQUETA DE LA BARRA INFERIOR DEL FORMULARIO Y LA HACEMOS VISIBLE
+                'SI OBTIENE EL SEGUNDO O TECER VALOR DE OUTPUT DESDE EL PROCEDIMIENTO ALMACENADO SP_SILV_CLIENTS_VIEW SE ASGINA AL SIGUIENTE CODIGO LB_RESULT.Visibility = BarItemVisibility.Always
+                'LB_RESULT.Caption = Convert.ToString(Message.Value)
                 If (Rows > 0) Then
                     LB_RESULT.Visibility = BarItemVisibility.Always
                     LB_RESULT.Caption = Convert.ToString(Message.Value)
@@ -157,22 +257,32 @@ Public Class frm_clients
                     LB_RESULT.Visibility = BarItemVisibility.Always
                     LB_RESULT.Caption = Convert.ToString(Message.Value)
                 End If
+
+                'CREAMOS UN ADAPTADOR PARA EL COMANDO
                 Adapter = New SqlDataAdapter(Command)
+                'SE CREA UN NUEVO DATATABLE
                 DataT = New DataTable
+                'INDICAMOS QUE EL ADAPTADOR DE LLENARA CON EL VALOR DE UN DATATABLE
                 Adapter.Fill(DataT)
+                'INDICAMOS QUE LA FUENTE DE DATOS DEL CONTROL GRIDCONTROL SERA UN DATATABLE
                 DGV_DATA.DataSource = DataT
+                'AL GRIDVIEW QUE SE CONTIENE DESDE EL GRIDCONTROL SE AJUSTARAN SUS COLUMNAS AL CONTENIDO DEL TEXTO 
                 G_DATA.BestFitColumns()
+
             End With
         Catch ex As Exception
+            'SE MUESTRA UN MENSAJE DE ERROR INDICANDO QUE ALGO DENTRO DEL CODIGO TRY ESTA MAL
             XtraMessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error)
         Finally
+            'FINALMENTE SE CIERRA LA CONEXION A LA BASE DE DATOS CON ESTE METODO QUE PROVIENE DESDE MetodosClases
             Disconnect_Database()
         End Try
     End Sub
-    Dim img() As Byte
+    Dim img() As Byte 'SE DECLARA UNA VARIABLE DE TIPO BYTE PARA MANIPULAR LOS DATOS DE LA IMAGEN A AGREGAR AL REGISTRO DEL CLIENTE
 #Region "Metodos Imagen"
     'funcion para convertir imagen a binario
-    Private Function imagen_bytes(ByVal Imagen As Image) As Byte()
+    Private Function imagen_bytes(ByVal Imagen As Image) As Byte() ' PARAMETRO DE TIPO IMAGE DECLARADO COMO UN ARREGLO DE BYTES 
+
         If Not Imagen Is Nothing Then
             'variable de datos binarios
             Dim bin As New MemoryStream
@@ -205,17 +315,29 @@ Public Class frm_clients
 
         End Try
     End Function
+    'METODO QUE OBTIENE EL VALOR DE UNA IMAGEN ASIGNADA UNA VEZ DADO DOBLE CLIC SOBRE UN REGISTRO
     Sub search_img()
         Try
+            'ESTABLECEMOS LA CONEXION A LA BASE DE DATOS
             Connect_Database()
-
+            'SE EJECUTA UN NUEVO COMANDO SP_OBTAIN_IMAGE_CLIENT E INDICAMOS MEDIANTE With {.CommandType = CommandType.StoredProcedure} QUE SE TRATA DE UN PROCEDIMIENTO ALMACENADO
             Command = New SqlCommand("SP_OBTAIN_IMAGE_CLIENT", connection) With {.CommandType = CommandType.StoredProcedure}
+            'INDICAMOS QUE ESTE COMANDO TENDRA PARAMETROS ADICIONALES PARA PODER EJECUTARSE Y DE SER POSIBLE RETORNAR UN VALOR
             With Command
+                'SE ENVIA COMO PARAMETRO EL ID DEL CLIENTE PARA BUSCAR EL LA IMAGEN QUE CORRESPONDE AL REGISTRO
                 .Parameters.Add("@ID_CLIENT", SqlDbType.Int).Value = TXT_ID.Text
-                Dim msgparam As New SqlParameter("@MENSAJE", SqlDbType.VarChar, 100) With {.Direction = ParameterDirection.Output}
+
+                'DECLARAMOS UNA VARIABLE DE TIPO SQLPARAMETER CON EL NOMBRE DEL @MENSAJE DE TIPO NVARCHAR Y LONGITUD 200, MISMO QUE SE DECLARO EN EL CUERPO DEL PROCEDIMIENTO ALMACENADO SP_OBTAIN_IMAGE_CLIENT
+                Dim msgparam As New SqlParameter("@MENSAJE", SqlDbType.VarChar, 100)
+                'INDICAMOS QUE SE TRATA DE UN PARAMETRO DE TIPO OUTPUT
+                msgparam.Direction = ParameterDirection.Output
+                'A NUESTRO COMANDO A EJCUTAR LE AÑADIMOS EL PARAMETRO NECESARIO PARA SU EJECUCION
                 .Parameters.Add(msgparam)
+
                 Dim rowsAffected As Integer = Command.ExecuteNonQuery()
+
                 Dim mensaje As String = ""
+
                 If rowsAffected > 0 Then
                     'Convert.ToString(XtraMessageBox.Show(CType(COMANDO.Parameters("@MSG").Value, String), "SGI-TEBAEV", MessageBoxButtons.OK))
                     LBL_PHOTO.Visibility = CType(True, DevExpress.XtraBars.BarItemVisibility)
@@ -227,23 +349,27 @@ Public Class frm_clients
                     LBL_PHOTO.Caption = Convert.ToString(Command.Parameters("@MENSAJE").Value)
                 End If
             End With
+            'DELARAMOS UNA VARIABLE TIPO LECTOR
             Dim lectores As SqlDataReader
+            'A LA VARIABLE LECTOR SE LE ASIGNA LA EJECUCION DEL COMANDO SP_OBTAIN_IMAGE_CLIENT
             lectores = Command.ExecuteReader
-
+            'REPETIR LA ACCION DE LEE HASTA QUE EL LECTOR LEA UN REGISTRO CON LA INFORMACION QUE SE NECESITA
             Do While lectores.Read
                 Me.pc_img.Image = bytes_imagen(CType(lectores.GetValue(0), Byte()))
                 Exit Do
             Loop
         Catch ex As Exception
+            'SE MUESTRA UN MENSAJE DE ERROR INDICANDO QUE ALGO DENTRO DEL CODIGO TRY ESTA MAL
             XtraMessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error)
         Finally
+            'FINALMENTE SE CIERRA LA CONEXION A LA BASE DE DATOS CON ESTE METODO QUE PROVIENE DESDE MetodosClases
             Disconnect_Database()
 
         End Try
     End Sub
 
 #End Region
-
+    'METODO PARA LIMPIAR LOS CAMPOS DEL FORMULARIO, TAMBIEN REESTABLECE EL CONTROL DE LA IMAGEN A DEFAULT
     Sub clean_fields()
         TXT_ID.ResetText()
         TX_CALLE.ResetText()
@@ -264,13 +390,13 @@ Public Class frm_clients
     End Sub
 
     Private Sub frm_clients_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        'TODO: esta línea de código carga datos en la tabla 'DataSet1.SP_SILV_CLIENTS_REPORT' Puede moverla o quitarla según sea necesario.
-        'Me.SP_SILV_CLIENTS_REPORTTableAdapter.Fill(Me.DataSet1.SP_SILV_CLIENTS_REPORT)
-        'llena en automatico las listas cada que el formulario es mostrado por primera vez
-        LIST_FOLIO()
-        LIST_CITY()
-        LIST_ESTATUS()
 
+        'llena en automatico las listas cada que el formulario es mostrado por primera vez
+        LIST_FOLIO() 'LISTAR LOS FOLIOS
+        LIST_CITY() 'LISTAR LAS CIUDADES
+        LIST_ESTATUS() 'LISTAR LOS ESTATUS
+
+        'SE UTILIZA EL ARREGLO BIDIMENSIONAL Y SE LE ASIGNAN LOS VALORES DE LOS ESTADOS
         array_nombres = {{"", ""},
            {"AGUASCALIENTES", "AS"},
            {"BAJA CALIFORNIA", "BC"},
@@ -305,9 +431,9 @@ Public Class frm_clients
                {"YUCATÁN", "YN"},
                {"ZACATECAS", "ZS"},
                {"NACIDO EXTRANJERO", "NE"}}
-
+        'SE DECLARA UNA VARIABLE DE TIPO ENTERA PARA FUNCIONAR COMO CONTADOR
         Dim contador As Integer
-        contador = 0
+        contador = 0 'SE INICIALIZA LA VARIABLE EN 0
         CB_ESTADO.Items.Add("Selecciona")
         CB_ESTADO.SelectedIndex = 0
         CB_ESTADO.DropDownStyle = ComboBoxStyle.DropDownList
