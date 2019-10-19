@@ -178,9 +178,9 @@ Public Class frn_main_form
     End Sub
 
     Private Sub BTN_ARTICLES_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BTN_ARTICLES.ItemClick
-        'Dim FRMC As New frm_articles
-        'FRMC.MdiParent = Me
-        'FRMC.Show()
+        Dim FRMC As New frm_assign_acc_mat
+        FRMC.MdiParent = Me
+        FRMC.Show()
     End Sub
 
     Private Sub BTN_WAREHOUSE_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BTN_WAREHOUSE.ItemClick

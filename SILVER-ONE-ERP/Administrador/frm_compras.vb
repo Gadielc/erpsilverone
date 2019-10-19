@@ -305,29 +305,29 @@ Public Class frm_compras
         TXT_COSTO_UNIT.ResetText()
         TXT_ID.ResetText()
         TXT_IMPORTE.ResetText()
-        TXT_LINEA.ResetText()
+        'TXT_LINEA.ResetText()
         TXT_PRECION_PUB.ResetText()
         TXT_T_COMPRA.ResetText()
         TXT_CANTIDAD.Focus()
     End Sub
 
     Private Sub BTN_SAVE_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BTN_SAVE.ItemClick
-        For Each Row As DataGridViewRow In dgv_data.Rows
-            Dim Cantidad As String = CType(Row.Cells("col_cantidad").Value, String)
-            Dim Costo As Double = CType(Row.Cells("col_costo_unit").Value, Double)
-            Dim Importe As Double = Val(Cantidad) * (Costo)
+        'For Each Row As DataGridViewRow In dgv_data.Rows
+        '    Dim Cantidad As String = CType(Row.Cells("col_cantidad").Value, String)
+        '    Dim Costo As Double = CType(Row.Cells("col_costo_unit").Value, Double)
+        '    Dim Importe As Double = Val(Cantidad) * Val(Costo)
 
-            'asignamos a la columna importe el valor de la operacion Val(Cantidad) * (Costo)
-            Row.Cells("col_importe").Value = Importe
+        '    'asignamos a la columna importe el valor de la operacion Val(Cantidad) * (Costo)
+        '    Row.Cells("col_importe").Value = Importe
 
-            'asignamos a la columna precio publico el total del costo unitario multiplicado por 3
-            Row.Cells("col_precio_pub").Value = Val(Costo) * 3
-            'dgv_data.Rows.RemoveAt(dgv_data.Rows.Count - 1)
-            'asignamos a la columna de la linea el valor de la columna accesorio concatenado con el valor de la columna del material
-            'creando asi la linea del producto
-            Row.Cells("col_linea").Value = Row.Cells("col_accesorio").Value + Row.Cells("col_material").Value
+        '    'asignamos a la columna precio publico el total del costo unitario multiplicado por 3
+        '    Row.Cells("col_precio_pub").Value = Val(Costo) * 3
+        '    'dgv_data.Rows.RemoveAt(dgv_data.Rows.Count - 1)
+        '    'asignamos a la columna de la linea el valor de la columna accesorio concatenado con el valor de la columna del material
+        '    'creando asi la linea del producto
+        '    Row.Cells("col_linea").Value = Row.Cells("col_accesorio").Value + Row.Cells("col_material").Value
 
-        Next
+        'Next
 
     End Sub
 
@@ -444,26 +444,53 @@ Public Class frm_compras
     End Sub
 
     Private Sub BTN_DELETE_ROW_SELEC_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BTN_DELETE_ROW_SELEC.ItemClick
-        dgv_data.Rows.Remove(dgv_data.CurrentRow)
-        CLEAR_FIELDS()
-        fSumar()
-        Sumar_Piezas()
-        txt_partidas.Text = Me.dgv_data.RowCount.ToString
+        Try
+            dgv_data.Rows.Remove(dgv_data.CurrentRow)
+            CLEAR_FIELDS()
+            fSumar()
+            Sumar_Piezas()
+            txt_partidas.Text = Me.dgv_data.RowCount.ToString
+        Catch ex As Exception
+            'SE MUESTRA UN MENSAJE DE ERROR INDICANDO QUE ALGO DENTRO DEL CODIGO TRY ESTA MAL
+            XtraMessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+
     End Sub
 
     Private Sub BTN_DELETE_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BTN_DELETE.ItemClick
-        For Each row As DataGridViewRow In dgv_data.Rows
-            dgv_data.Rows.Remove(row)
-        Next
-        'dgv_data.Rows.Clear()
+        Try
+            For Each row As DataGridViewRow In dgv_data.Rows
+                dgv_data.Rows.Remove(row)
+            Next
+            'dgv_data.Rows.Clear()
+        Catch ex As Exception
+            'SE MUESTRA UN MENSAJE DE ERROR INDICANDO QUE ALGO DENTRO DEL CODIGO TRY ESTA MAL
+            XtraMessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+
 
     End Sub
 
     Private Sub dgv_data_CellValueChanged(sender As Object, e As DataGridViewCellEventArgs) Handles dgv_data.CellValueChanged
+
         ' dgv_data.Rows.Remove(dgv_data.CurrentRow)
         '  CLEAR_FIELDS()
         fSumar()
         Sumar_Piezas()
         txt_partidas.Text = Me.dgv_data.RowCount.ToString
+    End Sub
+
+    Private Sub CB_MATERIAL_KeyPress(sender As Object, e As KeyPressEventArgs) Handles CB_MATERIAL.KeyPress
+        e.KeyChar = UCase(e.KeyChar)
+    End Sub
+
+    Private Sub CB_ACCESORIO_KeyPress(sender As Object, e As KeyPressEventArgs) Handles CB_ACCESORIO.KeyPress
+        e.KeyChar = UCase(e.KeyChar)
+    End Sub
+
+    Private Sub TXT_CANTIDAD_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TXT_CANTIDAD.KeyPress
+        If Not IsNumeric(e.KeyChar) Then
+            e.Handled = True
+        End If
     End Sub
 End Class

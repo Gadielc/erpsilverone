@@ -160,6 +160,12 @@
     <Compile Include="Administrador\frm_arts.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Administrador\frm_assign_acc_mat.Designer.vb">
+      <DependentUpon>frm_assign_acc_mat.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Administrador\frm_assign_acc_mat.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Administrador\frm_city.Designer.vb">
       <DependentUpon>frm_city.vb</DependentUpon>
     </Compile>
@@ -309,6 +315,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Administrador\frm_arts.resx">
       <DependentUpon>frm_arts.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administrador\frm_assign_acc_mat.resx">
+      <DependentUpon>frm_assign_acc_mat.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Administrador\frm_city.resx">
       <DependentUpon>frm_city.vb</DependentUpon>
@@ -686,6 +695,8 @@
     <None Include="Resources\currency_32x32.png" />
     <None Include="Resources\currency_16x16.png" />
     <None Include="Resources\add_32x32.png" />
+    <None Include="Resources\boproduct_32x32.png" />
+    <None Include="Resources\boproduct_16x16.png" />
     <Content Include="Resources\ICO_APP.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />

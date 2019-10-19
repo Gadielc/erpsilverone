@@ -29,8 +29,10 @@ Partial Class frm_compras
         Me.lbl_result_acc = New DevExpress.XtraBars.BarStaticItem()
         Me.lbl_result_mat = New DevExpress.XtraBars.BarStaticItem()
         Me.lbl_result_desc = New DevExpress.XtraBars.BarStaticItem()
+        Me.BarSubItem1 = New DevExpress.XtraBars.BarSubItem()
         Me.RibbonPage1 = New DevExpress.XtraBars.Ribbon.RibbonPage()
         Me.RibbonPageGroup1 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
+        Me.RibbonPageGroup2 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.RibbonStatusBar = New DevExpress.XtraBars.Ribbon.RibbonStatusBar()
         Me.DockManager1 = New DevExpress.XtraBars.Docking.DockManager(Me.components)
         Me.DockPanel1 = New DevExpress.XtraBars.Docking.DockPanel()
@@ -75,6 +77,7 @@ Partial Class frm_compras
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.TXT_ID = New DevExpress.XtraEditors.TextEdit()
         Me.dgv_data = New System.Windows.Forms.DataGridView()
+        Me.BTN_ADD_PR = New DevExpress.XtraBars.BarButtonItem()
         CType(Me.RibbonControl, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DockManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.DockPanel1.SuspendLayout()
@@ -104,9 +107,9 @@ Partial Class frm_compras
         'RibbonControl
         '
         Me.RibbonControl.ExpandCollapseItem.Id = 0
-        Me.RibbonControl.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.RibbonControl.ExpandCollapseItem, Me.BTN_SAVE, Me.BTN_DELETE_ROW_SELEC, Me.BTN_DELETE, Me.LBL_RESULT_PROVIDER, Me.LBL_RESULT_WAREH, Me.lbl_result_acc, Me.lbl_result_mat, Me.lbl_result_desc})
+        Me.RibbonControl.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.RibbonControl.ExpandCollapseItem, Me.BTN_SAVE, Me.BTN_DELETE_ROW_SELEC, Me.BTN_DELETE, Me.LBL_RESULT_PROVIDER, Me.LBL_RESULT_WAREH, Me.lbl_result_acc, Me.lbl_result_mat, Me.lbl_result_desc, Me.BarSubItem1, Me.BTN_ADD_PR})
         Me.RibbonControl.Location = New System.Drawing.Point(0, 0)
-        Me.RibbonControl.MaxItemId = 11
+        Me.RibbonControl.MaxItemId = 13
         Me.RibbonControl.Name = "RibbonControl"
         Me.RibbonControl.Pages.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPage() {Me.RibbonPage1})
         Me.RibbonControl.ShowApplicationButton = DevExpress.Utils.DefaultBoolean.[False]
@@ -172,9 +175,18 @@ Partial Class frm_compras
         Me.lbl_result_desc.Id = 10
         Me.lbl_result_desc.Name = "lbl_result_desc"
         '
+        'BarSubItem1
+        '
+        Me.BarSubItem1.Caption = "PRODUCTO"
+        Me.BarSubItem1.Id = 11
+        Me.BarSubItem1.ImageOptions.Image = Global.SILVER_ONE_ERP.My.Resources.Resources.boproduct_16x16
+        Me.BarSubItem1.ImageOptions.LargeImage = Global.SILVER_ONE_ERP.My.Resources.Resources.boproduct_32x32
+        Me.BarSubItem1.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.BTN_ADD_PR)})
+        Me.BarSubItem1.Name = "BarSubItem1"
+        '
         'RibbonPage1
         '
-        Me.RibbonPage1.Groups.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPageGroup() {Me.RibbonPageGroup1})
+        Me.RibbonPage1.Groups.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPageGroup() {Me.RibbonPageGroup1, Me.RibbonPageGroup2})
         Me.RibbonPage1.Name = "RibbonPage1"
         Me.RibbonPage1.Text = "OPCIONES BASICAS"
         '
@@ -185,6 +197,12 @@ Partial Class frm_compras
         Me.RibbonPageGroup1.ItemLinks.Add(Me.BTN_DELETE)
         Me.RibbonPageGroup1.Name = "RibbonPageGroup1"
         Me.RibbonPageGroup1.Text = "OPCIONES"
+        '
+        'RibbonPageGroup2
+        '
+        Me.RibbonPageGroup2.ItemLinks.Add(Me.BarSubItem1)
+        Me.RibbonPageGroup2.Name = "RibbonPageGroup2"
+        Me.RibbonPageGroup2.Text = "ARTICULO"
         '
         'RibbonStatusBar
         '
@@ -607,6 +625,13 @@ Partial Class frm_compras
         Me.dgv_data.Size = New System.Drawing.Size(821, 579)
         Me.dgv_data.TabIndex = 7
         '
+        'BTN_ADD_PR
+        '
+        Me.BTN_ADD_PR.Caption = "NUEVO"
+        Me.BTN_ADD_PR.Id = 12
+        Me.BTN_ADD_PR.ImageOptions.Image = Global.SILVER_ONE_ERP.My.Resources.Resources.add_32x32
+        Me.BTN_ADD_PR.Name = "BTN_ADD_PR"
+        '
         'frm_compras
         '
         Me.AcceptButton = Me.btn_Add
@@ -710,4 +735,7 @@ Partial Class frm_compras
     Friend WithEvents lbl_result_mat As DevExpress.XtraBars.BarStaticItem
     Friend WithEvents lbl_result_desc As DevExpress.XtraBars.BarStaticItem
     Friend WithEvents btn_Add As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents RibbonPageGroup2 As DevExpress.XtraBars.Ribbon.RibbonPageGroup
+    Friend WithEvents BarSubItem1 As DevExpress.XtraBars.BarSubItem
+    Friend WithEvents BTN_ADD_PR As DevExpress.XtraBars.BarButtonItem
 End Class
