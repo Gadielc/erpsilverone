@@ -229,7 +229,7 @@ Public Class frm_compras
 
         Next
         txt_totales.Text = Format(total, "#,##0.00")
-
+        txt_t_subtotal.Text = Format(total, "#,##0.00")
     End Sub
 
 
@@ -328,6 +328,68 @@ Public Class frm_compras
         '    Row.Cells("col_linea").Value = Row.Cells("col_accesorio").Value + Row.Cells("col_material").Value
 
         'Next
+
+        Try
+            'ESTABLECER LA CONEXION A LA BASE DE DATOS
+            Connect_Database()
+            For Each row As DataGridViewRow In dgv_data.Rows
+
+
+                Dim Cantidad As String = CType(row.Cells("CANTIDAD").Value, String)
+                Dim Accesorio As String = CType(row.Cells("ACCESORIO").Value, String)
+                Dim Material As String = CType(row.Cells("MATERIAL").Value, String)
+                Dim Linea As String = CType(row.Cells("LINEA").Value, String)
+                Dim Descripcion As String = CType(row.Cells("DESCRIPCION").Value, String)
+                Dim Costo_Unit As String = CType(row.Cells("COSTO UNITARIO").Value, String)
+                Dim Precio_Pub As String = CType(row.Cells("PRECIO PUBLICO").Value, String)
+                Dim Importe As String = CType(row.Cells("IMPORTE").Value, String)
+
+                Command = New SqlCommand("SP_SILV_COMPRAS_INSERT", connection) With {.CommandType = CommandType.StoredProcedure}
+                With Command
+                    .Parameters.Add("@COM_PROVEEDOR", SqlDbType.NVarChar, 100).Value = CB_PROVIDER.Text
+                    .Parameters.Add("@COM_WAREHOUSE", SqlDbType.NVarChar, 100).Value = CB_ALMACEN.Text
+                    '  .Parameters.Add("@COM_TIPO", SqlDbType.NVarChar, 50).Value = TXT_T_COMPRA.EditValue
+                    .Parameters.Add("@COM_FECHA_CMP", SqlDbType.Date).Value = DT_FECHA.EditValue
+                    .Parameters.Add("@COM_CANTIDAD", SqlDbType.Int).Value = Cantidad
+                    .Parameters.Add("@COM_ACCESORIO", SqlDbType.NVarChar, 10).Value = Accesorio
+
+                    .Parameters.Add("@COM_MATERIAL", SqlDbType.NVarChar, 10).Value = Material
+                    .Parameters.Add("@COM_LINEA", SqlDbType.NVarChar, 50).Value = Linea
+                    .Parameters.Add("@COM_DESCRIPCION", SqlDbType.NVarChar, 200).Value = Descripcion
+                    .Parameters.Add("@COM_PIEZAS", SqlDbType.Int).Value = txt_piezas.Text
+                    .Parameters.Add("@COM_PARTIDAS", SqlDbType.Int).Value = txt_partidas.Text
+                    .Parameters.Add("@COM_COSTO_UNIT", SqlDbType.Float).Value = Costo_Unit
+                    .Parameters.Add("@COM_PRECIO_PUB", SqlDbType.Float).Value = Precio_Pub
+                    .Parameters.Add("@COM_IMPORTE", SqlDbType.Float).Value = Importe
+                    .Parameters.Add("@COM_USER_CREATOR", SqlDbType.NVarChar, 100).Value = frn_main_form.LBL_USERNAME.Caption
+
+                    'DECLARAMOS UNA VARIABLE DE TIPO SQLPARAMETER CON EL NOMBRE DEL @MENSAJE DE TIPO NVARCHAR Y LONGITUD 200, MISMO QUE SE DECLARO EN EL CUERPO DEL PROCEDIMIENTO ALMACENADO SP_SILV_COUNTRIES_INSERT
+                    Dim Message As New SqlParameter("@MENSAJE", SqlDbType.NVarChar, 200)
+                    'INDICAMOS QUE SE TRATA DE UN PARAMETRO DE TIPO OUTPUT
+                    Message.Direction = ParameterDirection.Output
+                    'A NUESTRO COMANDO A EJCUTAR LE AÑADIMOS EL PARAMETRO NECESARIO PARA SU EJECUCION
+                    Command.Parameters.Add(Message)
+                    'LE ASIGNAMOS A LA VARIABLE    Public Rows As Integer LA EJECUCION DEL COMANDO ACTUAL  Command = New SqlCommand("SP_SILV_COUNTRIES_INSERT", connection)
+                    Rows = Command.ExecuteNonQuery
+                    'SI LA EJECUCION DEL COMANDO RETORNA UN VALOR DE LOS POSIBLES DE NUESTRO PROCEDIMIENTO SP_SILV_COUNTRIES_INSERT SE MUESTRA UN VALOR EN UN MENSAJE DE TIPO  XtraMessageBox DE LA LIBRERIA DEXEXPRESS
+                    If (Rows > 0) Then
+                        XtraMessageBox.Show(CType(Message.Value, String), "SISTEMA", MessageBoxButtons.OK)
+                    Else
+                        XtraMessageBox.Show(CType(Message.Value, String), "SISTEMA", MessageBoxButtons.OK)
+                    End If
+                End With
+            Next
+
+        Catch ex As Exception
+            'SE MUESTRA UN MENSAJE DE ERROR INDICANDO QUE ALGO DENTRO DEL CODIGO TRY ESTA MAL
+            XtraMessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Finally
+            'FINALMENTE NOS DESCONECTAMOS DE LA BASE DE DATOS
+            Disconnect_Database()
+            'LIMPIAMOS LOS CAMPOS
+            CLEAR_FIELDS()
+            '  dgv_data.DataSource = Nothing
+        End Try
 
     End Sub
 
@@ -467,8 +529,6 @@ Public Class frm_compras
             'SE MUESTRA UN MENSAJE DE ERROR INDICANDO QUE ALGO DENTRO DEL CODIGO TRY ESTA MAL
             XtraMessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
-
-
     End Sub
 
     Private Sub dgv_data_CellValueChanged(sender As Object, e As DataGridViewCellEventArgs) Handles dgv_data.CellValueChanged
@@ -494,3 +554,4 @@ Public Class frm_compras
         End If
     End Sub
 End Class
+'se hace este modulo con la finalidad de agregar articulos en una sola compra a traves de un gridcontrol

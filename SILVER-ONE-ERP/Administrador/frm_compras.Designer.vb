@@ -30,6 +30,7 @@ Partial Class frm_compras
         Me.lbl_result_mat = New DevExpress.XtraBars.BarStaticItem()
         Me.lbl_result_desc = New DevExpress.XtraBars.BarStaticItem()
         Me.BarSubItem1 = New DevExpress.XtraBars.BarSubItem()
+        Me.BTN_ADD_PR = New DevExpress.XtraBars.BarButtonItem()
         Me.RibbonPage1 = New DevExpress.XtraBars.Ribbon.RibbonPage()
         Me.RibbonPageGroup1 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.RibbonPageGroup2 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
@@ -77,7 +78,6 @@ Partial Class frm_compras
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.TXT_ID = New DevExpress.XtraEditors.TextEdit()
         Me.dgv_data = New System.Windows.Forms.DataGridView()
-        Me.BTN_ADD_PR = New DevExpress.XtraBars.BarButtonItem()
         CType(Me.RibbonControl, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DockManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.DockPanel1.SuspendLayout()
@@ -159,6 +159,7 @@ Partial Class frm_compras
         Me.lbl_result_acc.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right
         Me.lbl_result_acc.Caption = "..."
         Me.lbl_result_acc.Id = 8
+        Me.lbl_result_acc.ImageOptions.Image = Global.SILVER_ONE_ERP.My.Resources.Resources.bosale_32x32
         Me.lbl_result_acc.Name = "lbl_result_acc"
         '
         'lbl_result_mat
@@ -166,6 +167,7 @@ Partial Class frm_compras
         Me.lbl_result_mat.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right
         Me.lbl_result_mat.Caption = "..."
         Me.lbl_result_mat.Id = 9
+        Me.lbl_result_mat.ImageOptions.Image = Global.SILVER_ONE_ERP.My.Resources.Resources.iconsetstars3_32x32
         Me.lbl_result_mat.Name = "lbl_result_mat"
         '
         'lbl_result_desc
@@ -173,6 +175,7 @@ Partial Class frm_compras
         Me.lbl_result_desc.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right
         Me.lbl_result_desc.Caption = "..."
         Me.lbl_result_desc.Id = 10
+        Me.lbl_result_desc.ImageOptions.Image = Global.SILVER_ONE_ERP.My.Resources.Resources.reading_32x32
         Me.lbl_result_desc.Name = "lbl_result_desc"
         '
         'BarSubItem1
@@ -183,6 +186,13 @@ Partial Class frm_compras
         Me.BarSubItem1.ImageOptions.LargeImage = Global.SILVER_ONE_ERP.My.Resources.Resources.boproduct_32x32
         Me.BarSubItem1.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.BTN_ADD_PR)})
         Me.BarSubItem1.Name = "BarSubItem1"
+        '
+        'BTN_ADD_PR
+        '
+        Me.BTN_ADD_PR.Caption = "NUEVO"
+        Me.BTN_ADD_PR.Id = 12
+        Me.BTN_ADD_PR.ImageOptions.Image = Global.SILVER_ONE_ERP.My.Resources.Resources.add_32x32
+        Me.BTN_ADD_PR.Name = "BTN_ADD_PR"
         '
         'RibbonPage1
         '
@@ -624,13 +634,6 @@ Partial Class frm_compras
         Me.dgv_data.Name = "dgv_data"
         Me.dgv_data.Size = New System.Drawing.Size(821, 579)
         Me.dgv_data.TabIndex = 7
-        '
-        'BTN_ADD_PR
-        '
-        Me.BTN_ADD_PR.Caption = "NUEVO"
-        Me.BTN_ADD_PR.Id = 12
-        Me.BTN_ADD_PR.ImageOptions.Image = Global.SILVER_ONE_ERP.My.Resources.Resources.add_32x32
-        Me.BTN_ADD_PR.Name = "BTN_ADD_PR"
         '
         'frm_compras
         '

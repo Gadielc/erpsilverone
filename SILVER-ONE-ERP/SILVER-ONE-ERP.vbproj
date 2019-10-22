@@ -250,6 +250,12 @@
     <Compile Include="Administrador\frm_user_type.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Administrador\frm_view_compras.Designer.vb">
+      <DependentUpon>frm_view_compras.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Administrador\frm_view_compras.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Administrador\frm_warehouse.Designer.vb">
       <DependentUpon>frm_warehouse.vb</DependentUpon>
     </Compile>
@@ -360,6 +366,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Administrador\frm_user_type.resx">
       <DependentUpon>frm_user_type.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administrador\frm_view_compras.resx">
+      <DependentUpon>frm_view_compras.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Administrador\frm_warehouse.resx">
       <DependentUpon>frm_warehouse.vb</DependentUpon>
@@ -686,6 +695,7 @@
     <None Include="Resources\boorderitem_16x16.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\reading_32x32.png" />
     <None Include="Resources\none_16x16.png" />
     <None Include="Resources\none_32x32.png" />
     <None Include="Resources\female_32x32.png" />
