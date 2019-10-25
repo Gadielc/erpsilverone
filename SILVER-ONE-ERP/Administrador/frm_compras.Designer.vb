@@ -20,6 +20,21 @@ Partial Class frm_compras
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim SuperToolTip1 As DevExpress.Utils.SuperToolTip = New DevExpress.Utils.SuperToolTip()
+        Dim ToolTipTitleItem1 As DevExpress.Utils.ToolTipTitleItem = New DevExpress.Utils.ToolTipTitleItem()
+        Dim ToolTipItem1 As DevExpress.Utils.ToolTipItem = New DevExpress.Utils.ToolTipItem()
+        Dim ToolTipSeparatorItem1 As DevExpress.Utils.ToolTipSeparatorItem = New DevExpress.Utils.ToolTipSeparatorItem()
+        Dim ToolTipTitleItem2 As DevExpress.Utils.ToolTipTitleItem = New DevExpress.Utils.ToolTipTitleItem()
+        Dim SuperToolTip2 As DevExpress.Utils.SuperToolTip = New DevExpress.Utils.SuperToolTip()
+        Dim ToolTipTitleItem3 As DevExpress.Utils.ToolTipTitleItem = New DevExpress.Utils.ToolTipTitleItem()
+        Dim ToolTipItem2 As DevExpress.Utils.ToolTipItem = New DevExpress.Utils.ToolTipItem()
+        Dim ToolTipSeparatorItem2 As DevExpress.Utils.ToolTipSeparatorItem = New DevExpress.Utils.ToolTipSeparatorItem()
+        Dim ToolTipTitleItem4 As DevExpress.Utils.ToolTipTitleItem = New DevExpress.Utils.ToolTipTitleItem()
+        Dim SuperToolTip3 As DevExpress.Utils.SuperToolTip = New DevExpress.Utils.SuperToolTip()
+        Dim ToolTipTitleItem5 As DevExpress.Utils.ToolTipTitleItem = New DevExpress.Utils.ToolTipTitleItem()
+        Dim ToolTipItem3 As DevExpress.Utils.ToolTipItem = New DevExpress.Utils.ToolTipItem()
+        Dim ToolTipSeparatorItem3 As DevExpress.Utils.ToolTipSeparatorItem = New DevExpress.Utils.ToolTipSeparatorItem()
+        Dim ToolTipTitleItem6 As DevExpress.Utils.ToolTipTitleItem = New DevExpress.Utils.ToolTipTitleItem()
         Me.RibbonControl = New DevExpress.XtraBars.Ribbon.RibbonControl()
         Me.BTN_SAVE = New DevExpress.XtraBars.BarButtonItem()
         Me.BTN_DELETE_ROW_SELEC = New DevExpress.XtraBars.BarButtonItem()
@@ -38,13 +53,14 @@ Partial Class frm_compras
         Me.DockManager1 = New DevExpress.XtraBars.Docking.DockManager(Me.components)
         Me.DockPanel1 = New DevExpress.XtraBars.Docking.DockPanel()
         Me.DockPanel1_Container = New DevExpress.XtraBars.Docking.ControlContainer()
+        Me.TXT_FOLIO_DOC = New DevExpress.XtraEditors.TextEdit()
         Me.btn_Add = New DevExpress.XtraEditors.SimpleButton()
         Me.TXT_IMPORTE = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl17 = New DevExpress.XtraEditors.LabelControl()
         Me.TXT_PRECION_PUB = New DevExpress.XtraEditors.TextEdit()
         Me.CB_MATERIAL = New System.Windows.Forms.ComboBox()
         Me.LabelControl13 = New DevExpress.XtraEditors.LabelControl()
-        Me.TextEdit5 = New DevExpress.XtraEditors.TextEdit()
+        Me.TXT_CLAVE_PRODUCTO = New DevExpress.XtraEditors.TextEdit()
         Me.TXT_COSTO_UNIT = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl14 = New DevExpress.XtraEditors.LabelControl()
         Me.CB_ACCESORIO = New System.Windows.Forms.ComboBox()
@@ -82,9 +98,10 @@ Partial Class frm_compras
         CType(Me.DockManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.DockPanel1.SuspendLayout()
         Me.DockPanel1_Container.SuspendLayout()
+        CType(Me.TXT_FOLIO_DOC.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TXT_IMPORTE.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TXT_PRECION_PUB.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit5.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TXT_CLAVE_PRODUCTO.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TXT_COSTO_UNIT.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TXT_LINEA.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -123,6 +140,16 @@ Partial Class frm_compras
         Me.BTN_SAVE.Id = 1
         Me.BTN_SAVE.ImageOptions.LargeImage = Global.SILVER_ONE_ERP.My.Resources.Resources.save_32x321
         Me.BTN_SAVE.Name = "BTN_SAVE"
+        ToolTipTitleItem1.Text = "INFORMACION"
+        ToolTipItem1.LeftIndent = 6
+        ToolTipItem1.Text = "PRESIONE UNA VEZ HAYA AGREGADO TODOS LOS ARTICULOS A SU COMPRA"
+        ToolTipTitleItem2.LeftIndent = 6
+        ToolTipTitleItem2.Text = "SILVER ONE ERP"
+        SuperToolTip1.Items.Add(ToolTipTitleItem1)
+        SuperToolTip1.Items.Add(ToolTipItem1)
+        SuperToolTip1.Items.Add(ToolTipSeparatorItem1)
+        SuperToolTip1.Items.Add(ToolTipTitleItem2)
+        Me.BTN_SAVE.SuperTip = SuperToolTip1
         '
         'BTN_DELETE_ROW_SELEC
         '
@@ -131,6 +158,16 @@ Partial Class frm_compras
         Me.BTN_DELETE_ROW_SELEC.ImageOptions.Image = Global.SILVER_ONE_ERP.My.Resources.Resources.none_16x16
         Me.BTN_DELETE_ROW_SELEC.ImageOptions.LargeImage = Global.SILVER_ONE_ERP.My.Resources.Resources.none_32x32
         Me.BTN_DELETE_ROW_SELEC.Name = "BTN_DELETE_ROW_SELEC"
+        ToolTipTitleItem3.Text = "INFORMACION"
+        ToolTipItem2.LeftIndent = 6
+        ToolTipItem2.Text = "PRESIONE PARA ELIMINAR UNA PARTIDA SELECCIONADA DEL TOTAL DE SU COMPRA."
+        ToolTipTitleItem4.LeftIndent = 6
+        ToolTipTitleItem4.Text = "SILVER ONE ERP"
+        SuperToolTip2.Items.Add(ToolTipTitleItem3)
+        SuperToolTip2.Items.Add(ToolTipItem2)
+        SuperToolTip2.Items.Add(ToolTipSeparatorItem2)
+        SuperToolTip2.Items.Add(ToolTipTitleItem4)
+        Me.BTN_DELETE_ROW_SELEC.SuperTip = SuperToolTip2
         '
         'BTN_DELETE
         '
@@ -241,19 +278,20 @@ Partial Class frm_compras
         Me.DockPanel1.Location = New System.Drawing.Point(0, 143)
         Me.DockPanel1.Name = "DockPanel1"
         Me.DockPanel1.Options.ShowCloseButton = False
-        Me.DockPanel1.OriginalSize = New System.Drawing.Size(510, 200)
-        Me.DockPanel1.Size = New System.Drawing.Size(510, 579)
+        Me.DockPanel1.OriginalSize = New System.Drawing.Size(526, 200)
+        Me.DockPanel1.Size = New System.Drawing.Size(526, 579)
         Me.DockPanel1.Text = "DATOS DE LA COMPRA"
         '
         'DockPanel1_Container
         '
+        Me.DockPanel1_Container.Controls.Add(Me.TXT_FOLIO_DOC)
         Me.DockPanel1_Container.Controls.Add(Me.btn_Add)
         Me.DockPanel1_Container.Controls.Add(Me.TXT_IMPORTE)
         Me.DockPanel1_Container.Controls.Add(Me.LabelControl17)
         Me.DockPanel1_Container.Controls.Add(Me.TXT_PRECION_PUB)
         Me.DockPanel1_Container.Controls.Add(Me.CB_MATERIAL)
         Me.DockPanel1_Container.Controls.Add(Me.LabelControl13)
-        Me.DockPanel1_Container.Controls.Add(Me.TextEdit5)
+        Me.DockPanel1_Container.Controls.Add(Me.TXT_CLAVE_PRODUCTO)
         Me.DockPanel1_Container.Controls.Add(Me.TXT_COSTO_UNIT)
         Me.DockPanel1_Container.Controls.Add(Me.LabelControl14)
         Me.DockPanel1_Container.Controls.Add(Me.CB_ACCESORIO)
@@ -280,16 +318,37 @@ Partial Class frm_compras
         Me.DockPanel1_Container.Controls.Add(Me.TXT_ID)
         Me.DockPanel1_Container.Location = New System.Drawing.Point(4, 23)
         Me.DockPanel1_Container.Name = "DockPanel1_Container"
-        Me.DockPanel1_Container.Size = New System.Drawing.Size(501, 552)
+        Me.DockPanel1_Container.Size = New System.Drawing.Size(517, 552)
         Me.DockPanel1_Container.TabIndex = 0
+        '
+        'TXT_FOLIO_DOC
+        '
+        Me.TXT_FOLIO_DOC.Location = New System.Drawing.Point(209, 12)
+        Me.TXT_FOLIO_DOC.MenuManager = Me.RibbonControl
+        Me.TXT_FOLIO_DOC.Name = "TXT_FOLIO_DOC"
+        Me.TXT_FOLIO_DOC.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXT_FOLIO_DOC.Properties.Appearance.Options.UseFont = True
+        Me.TXT_FOLIO_DOC.Properties.ReadOnly = True
+        Me.TXT_FOLIO_DOC.Size = New System.Drawing.Size(181, 22)
+        Me.TXT_FOLIO_DOC.TabIndex = 11
         '
         'btn_Add
         '
         Me.btn_Add.ImageOptions.Image = Global.SILVER_ONE_ERP.My.Resources.Resources.add_32x32
         Me.btn_Add.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.TopCenter
-        Me.btn_Add.Location = New System.Drawing.Point(440, 3)
+        Me.btn_Add.Location = New System.Drawing.Point(454, 3)
         Me.btn_Add.Name = "btn_Add"
         Me.btn_Add.Size = New System.Drawing.Size(60, 39)
+        ToolTipTitleItem5.Text = "INFORMACION"
+        ToolTipItem3.LeftIndent = 6
+        ToolTipItem3.Text = "PRESIONE LA TECLA ENTER PARA AÑADIR MAS DATOS A LA COMPRA."
+        ToolTipTitleItem6.LeftIndent = 6
+        ToolTipTitleItem6.Text = "SILVER ONE ERP"
+        SuperToolTip3.Items.Add(ToolTipTitleItem5)
+        SuperToolTip3.Items.Add(ToolTipItem3)
+        SuperToolTip3.Items.Add(ToolTipSeparatorItem3)
+        SuperToolTip3.Items.Add(ToolTipTitleItem6)
+        Me.btn_Add.SuperTip = SuperToolTip3
         Me.btn_Add.TabIndex = 24
         '
         'TXT_IMPORTE
@@ -334,15 +393,15 @@ Partial Class frm_compras
         Me.LabelControl13.TabIndex = 22
         Me.LabelControl13.Text = "PRECIO PUBLICO"
         '
-        'TextEdit5
+        'TXT_CLAVE_PRODUCTO
         '
-        Me.TextEdit5.Location = New System.Drawing.Point(11, 71)
-        Me.TextEdit5.MenuManager = Me.RibbonControl
-        Me.TextEdit5.Name = "TextEdit5"
-        Me.TextEdit5.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextEdit5.Properties.Appearance.Options.UseFont = True
-        Me.TextEdit5.Size = New System.Drawing.Size(181, 22)
-        Me.TextEdit5.TabIndex = 1
+        Me.TXT_CLAVE_PRODUCTO.Location = New System.Drawing.Point(11, 71)
+        Me.TXT_CLAVE_PRODUCTO.MenuManager = Me.RibbonControl
+        Me.TXT_CLAVE_PRODUCTO.Name = "TXT_CLAVE_PRODUCTO"
+        Me.TXT_CLAVE_PRODUCTO.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXT_CLAVE_PRODUCTO.Properties.Appearance.Options.UseFont = True
+        Me.TXT_CLAVE_PRODUCTO.Size = New System.Drawing.Size(181, 22)
+        Me.TXT_CLAVE_PRODUCTO.TabIndex = 1
         '
         'TXT_COSTO_UNIT
         '
@@ -630,9 +689,9 @@ Partial Class frm_compras
         Me.dgv_data.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
         Me.dgv_data.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgv_data.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.dgv_data.Location = New System.Drawing.Point(510, 143)
+        Me.dgv_data.Location = New System.Drawing.Point(526, 143)
         Me.dgv_data.Name = "dgv_data"
-        Me.dgv_data.Size = New System.Drawing.Size(821, 579)
+        Me.dgv_data.Size = New System.Drawing.Size(805, 579)
         Me.dgv_data.TabIndex = 7
         '
         'frm_compras
@@ -656,9 +715,10 @@ Partial Class frm_compras
         Me.DockPanel1.ResumeLayout(False)
         Me.DockPanel1_Container.ResumeLayout(False)
         Me.DockPanel1_Container.PerformLayout()
+        CType(Me.TXT_FOLIO_DOC.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TXT_IMPORTE.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TXT_PRECION_PUB.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit5.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TXT_CLAVE_PRODUCTO.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TXT_COSTO_UNIT.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TXT_LINEA.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).EndInit()
@@ -715,7 +775,7 @@ Partial Class frm_compras
     Friend WithEvents LabelControl7 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents txt_piezas As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents TextEdit5 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TXT_CLAVE_PRODUCTO As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl9 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents dgv_data As DataGridView
     Friend WithEvents CB_MATERIAL As ComboBox
@@ -741,4 +801,5 @@ Partial Class frm_compras
     Friend WithEvents RibbonPageGroup2 As DevExpress.XtraBars.Ribbon.RibbonPageGroup
     Friend WithEvents BarSubItem1 As DevExpress.XtraBars.BarSubItem
     Friend WithEvents BTN_ADD_PR As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents TXT_FOLIO_DOC As DevExpress.XtraEditors.TextEdit
 End Class

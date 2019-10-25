@@ -138,5 +138,41 @@ Module MetodosClases
     End Sub
 
 #End Region
+#Region "Metodos Generadores"
+    Public Function Generadores(ByVal Tabla As String) As String
+        Dim result As String
+        Dim dr1 As SqlDataReader
+        Dim ult As Integer = 0
+        'SIGUIENTE LINEA SE REEMPLAZA POR USO DE UN PARAMETRO ALMACENADO
+        Dim cmd As New SqlCommand("SELECT GEN_ULTIMO FROM SILV_GENERADOR WHERE COM_PARAMETRO=" + Tabla + "", connection)
+        Try
+            Connect_Database()
+            ' Command = New SqlCommand("SP_OBTAIN_GENERATOR", connection) With {.CommandType = CommandType.StoredProcedure}
+            ' With Command
+            ' .Parameters.Add("@TABLA", SqlDbType.NVarChar, 100).Value = Tabla
+            ' End With
 
+            dr1 = cmd.ExecuteReader
+            While dr1.Read
+                ult = CInt(Val(dr1("GEN_ULTIMO") + 1))
+            End While
+            Disconnect_Database()
+
+            Dim CEROS As Integer
+            CEROS = 5 - Len(Str(ult))
+            Select Case CEROS
+                Case 3 : result = Left(Tabla, 3) + "000" + Trim(Str(ult))
+                Case 2 : result = Left(Tabla, 3) + "00" + Trim(Str(ult))
+                Case 1 : result = Left(Tabla, 3) + "0" + Trim(Str(ult))
+                Case 0 : result = Left(Tabla, 3) + "" + Trim(Str(ult))
+
+            End Select
+            Generadores = result
+        Catch ex As Exception
+            'SE MUESTRA UN MENSAJE DE ERROR INDICANDO QUE ALGO DENTRO DEL CODIGO TRY ESTA MAL
+            XtraMessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Function
+
+#End Region
 End Module

@@ -310,7 +310,18 @@ Public Class frm_compras
         TXT_T_COMPRA.ResetText()
         TXT_CANTIDAD.Focus()
     End Sub
-
+    Sub UPDATE_GENERATOR()
+        Try
+            Connect_Database()
+            Command = New SqlCommand("SP_UPDATE_GENERATOR", connection) With {.CommandType = CommandType.StoredProcedure}
+            Command.ExecuteNonQuery()
+        Catch ex As Exception
+            'SE MUESTRA UN MENSAJE DE ERROR INDICANDO QUE ALGO DENTRO DEL CODIGO TRY ESTA MAL
+            XtraMessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Finally
+            Disconnect_Database()
+        End Try
+    End Sub
     Private Sub BTN_SAVE_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BTN_SAVE.ItemClick
         'For Each Row As DataGridViewRow In dgv_data.Rows
         '    Dim Cantidad As String = CType(Row.Cells("col_cantidad").Value, String)
@@ -319,7 +330,6 @@ Public Class frm_compras
 
         '    'asignamos a la columna importe el valor de la operacion Val(Cantidad) * (Costo)
         '    Row.Cells("col_importe").Value = Importe
-
         '    'asignamos a la columna precio publico el total del costo unitario multiplicado por 3
         '    Row.Cells("col_precio_pub").Value = Val(Costo) * 3
         '    'dgv_data.Rows.RemoveAt(dgv_data.Rows.Count - 1)
@@ -334,7 +344,6 @@ Public Class frm_compras
             Connect_Database()
             For Each row As DataGridViewRow In dgv_data.Rows
 
-
                 Dim Cantidad As String = CType(row.Cells("CANTIDAD").Value, String)
                 Dim Accesorio As String = CType(row.Cells("ACCESORIO").Value, String)
                 Dim Material As String = CType(row.Cells("MATERIAL").Value, String)
@@ -348,7 +357,7 @@ Public Class frm_compras
                 With Command
                     .Parameters.Add("@COM_PROVEEDOR", SqlDbType.NVarChar, 100).Value = CB_PROVIDER.Text
                     .Parameters.Add("@COM_WAREHOUSE", SqlDbType.NVarChar, 100).Value = CB_ALMACEN.Text
-                    '  .Parameters.Add("@COM_TIPO", SqlDbType.NVarChar, 50).Value = TXT_T_COMPRA.EditValue
+                    .Parameters.Add("@COM_FOLIO_DOCUMENT", SqlDbType.NVarChar, 50).Value = TXT_FOLIO_DOC.EditValue
                     .Parameters.Add("@COM_FECHA_CMP", SqlDbType.Date).Value = DT_FECHA.EditValue
                     .Parameters.Add("@COM_CANTIDAD", SqlDbType.Int).Value = Cantidad
                     .Parameters.Add("@COM_ACCESORIO", SqlDbType.NVarChar, 10).Value = Accesorio
@@ -389,6 +398,8 @@ Public Class frm_compras
             'LIMPIAMOS LOS CAMPOS
             CLEAR_FIELDS()
             '  dgv_data.DataSource = Nothing
+            UPDATE_GENERATOR()
+            Me.TXT_FOLIO_DOC.Text = Generadores("COM_PARAMETRO")
         End Try
 
     End Sub
@@ -396,6 +407,8 @@ Public Class frm_compras
 
 
     Private Sub frm_compras_Load(sender As Object, e As EventArgs) Handles Me.Load
+
+        Me.TXT_FOLIO_DOC.Text = Generadores("COM_PARAMETRO")
         TXT_CANTIDAD.Focus()
         table.Columns.Add("CANTIDAD", Type.GetType("System.Int32"))
         table.Columns.Add("ACCESORIO", Type.GetType("System.String"))
@@ -411,8 +424,6 @@ Public Class frm_compras
         'Inicializamos el control de la fecha con el valor similar a getdate()'
         'para obtener la fecha y esta se asigne automaticamente al documento
         DT_FECHA.EditValue = DateTime.Now
-
-
         'Realizamos el listado del PROVEEDOR
         LIST_PROVIDERS()
         'Realizamos el listado de los almacenes disponibles
@@ -450,49 +461,49 @@ Public Class frm_compras
     Private Sub btn_Add_Click(sender As Object, e As EventArgs) Handles btn_Add.Click
         Dim valida As Boolean = False
         If (TXT_CANTIDAD.Text = "") Then
-            XtraMessageBox.Show("DEBE ESPECIFICAR LA CANTIDAD DE LAS PIEZAS", "SISTEMA", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            XtraMessageBox.Show("DEBE ESPECIFICAR LA CANTIDAD DE LAS PIEZAS", "SISTEMA", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             valida = True
             Exit Sub
         End If
         'ACCESORIO
         If (CB_ACCESORIO.Text = "") Then
-            XtraMessageBox.Show("DEBE ESPECIFICAR EL ACCESORIO DE LA PIEZA", "SISTEMA", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            XtraMessageBox.Show("DEBE ESPECIFICAR EL ACCESORIO DE LA PIEZA", "SISTEMA", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             valida = True
             Exit Sub
         End If
         'MATERIAL
         If (CB_MATERIAL.Text = "") Then
-            XtraMessageBox.Show("DEBE ESPECIFICAR EL ACCESORIO DE LA PIEZA", "SISTEMA", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            XtraMessageBox.Show("DEBE ESPECIFICAR EL ACCESORIO DE LA PIEZA", "SISTEMA", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             valida = True
             Exit Sub
         End If
         'LINEA
         If (TXT_LINEA.Text = "") Then
-            XtraMessageBox.Show("DEBE ESPECIFICAR LA LINEA DE LA PIEZA", "SISTEMA", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            XtraMessageBox.Show("DEBE ESPECIFICAR LA LINEA DE LA PIEZA", "SISTEMA", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             valida = True
             Exit Sub
         End If
         'DESCRIPCION
         If (CB_DESCRIPCION.Text = "") Then
-            XtraMessageBox.Show("DEBE ESPECIFICAR LA DESCRIPCION DE LA PIEZA", "SISTEMA", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            XtraMessageBox.Show("DEBE ESPECIFICAR LA DESCRIPCION DE LA PIEZA", "SISTEMA", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             valida = True
             Exit Sub
         End If
         'COSTO UNITARIO
         If (TXT_COSTO_UNIT.Text = "") Then
-            XtraMessageBox.Show("DEBE ESPECIFICAR EL COSTO UNITARIO DE LA PIEZA", "SISTEMA", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            XtraMessageBox.Show("DEBE ESPECIFICAR EL COSTO UNITARIO DE LA PIEZA", "SISTEMA", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             valida = True
             Exit Sub
         End If
         'PRECIO PUBLICO
         If (TXT_PRECION_PUB.Text = "") Then
-            XtraMessageBox.Show("DEBE ESPECIFICAR EL PRECIO PUBLICO DE LA PIEZA", "SISTEMA", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            XtraMessageBox.Show("DEBE ESPECIFICAR EL PRECIO PUBLICO DE LA PIEZA", "SISTEMA", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             valida = True
             Exit Sub
         End If
         'IMPORTE
         If (TXT_IMPORTE.Text = "") Then
-            XtraMessageBox.Show("DEBE ESPECIFICAR EL IMPORTE DE LAS PIEZAS", "SISTEMA", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            XtraMessageBox.Show("DEBE ESPECIFICAR EL IMPORTE DE LAS PIEZAS", "SISTEMA", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             valida = True
             Exit Sub
         End If
@@ -520,6 +531,7 @@ Public Class frm_compras
     End Sub
 
     Private Sub BTN_DELETE_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BTN_DELETE.ItemClick
+
         Try
             For Each row As DataGridViewRow In dgv_data.Rows
                 dgv_data.Rows.Remove(row)
@@ -552,6 +564,10 @@ Public Class frm_compras
         If Not IsNumeric(e.KeyChar) Then
             e.Handled = True
         End If
+    End Sub
+
+    Private Sub BTN_ADD_PR_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BTN_ADD_PR.ItemClick
+
     End Sub
 End Class
 'se hace este modulo con la finalidad de agregar articulos en una sola compra a traves de un gridcontrol

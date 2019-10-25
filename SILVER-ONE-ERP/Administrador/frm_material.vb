@@ -151,7 +151,6 @@ Public Class frm_material
             Exit Sub
         End If
 
-
         If (VALIDA = True) Then
             XtraMessageBox.Show("DEBE ESPECIFICAR LA INFORMACION REQUERIDA PARA LA MODIFICACION DEL REGISTRO", "SISTEMA", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Exit Sub
